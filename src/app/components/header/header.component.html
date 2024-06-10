@@ -1,1 +1,22 @@
-<p>header works!</p>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#">
+                <img class="logo" src="./assets/logo/norway-flag.svg" alt="Norway flag">
+                <span class="ms-2 logo-text">airports</span>
+            </a>
+
+            <div class="lang-bar">
+                <label>
+                    {{ 'HOME.SELECT' | translate }}
+                    <select #langSelect (change)="translate.use(langSelect.value)">
+                        <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                            [selected]="lang === translate.currentLang">{{ lang }}</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+    </nav>
+</header>

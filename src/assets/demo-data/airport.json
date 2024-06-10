@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Paris Charles de Gaulle Airport",
+        "iata_code": "CDG",
+        "lat": 49.009592,
+        "lng": 2.555675,
+        "city": "Paris",
+        "country_code": "FR",
+        "names": {
+            "en": "Paris Charles de Gaulle Airport",
+            "no": "Charles de Gaulle internasjonale lufthavn"
+        }
+    },
+    {
+        "name": "Tallinn Airport",
+        "iata_code": "TLL",
+        "lat": 59.413333,
+        "lng": 24.83222,
+        "city": "Tallinn",
+        "country_code": "EE",
+        "names": {
+            "en": "Tallinn Airport",
+            "no": "Tallinna Lennujaam"
+        }
+    }
+]
