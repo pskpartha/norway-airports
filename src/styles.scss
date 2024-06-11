@@ -2,3 +2,21 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal
+}
+
+.f-title {
+    font-family: "Ubuntu", sans-serif;
+}
+
+.bg-test {
+    background-color: yellow;
+}
+
+.border-0 {
+    border: 0 !important;
+}

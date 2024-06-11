@@ -1,1 +1,56 @@
-<p>airport-list works!</p>
+<section class="search-area my-5">
+    <!-- TODO: translate -->
+    <div class="selected-airport d-flex align-items-center">
+        <div class="airport-name d-flex align-items-center pe-3">
+            <img class="me-2" src="./assets/icons/airplane.svg" alt="">
+            <p class="mb-0 fw-medium  f-title">{{selectedAirport?.name}}</p>
+        </div>
+
+        <button type="button" class="btn btn-outline-secondary ms-auto" (click)="toggleAirportList()">
+            <img src="./assets/icons/list-ol.svg" alt="Airport">
+            <span class="visually-hidden">Button</span>
+        </button>
+
+        <div class="airportlist-wrapper card shadow-sm border-0" *ngIf="showAirportList">
+            <div class="card-wrapper">
+                <button type="button" class="btn-close" aria-label="Close" (click)="toggleAirportList()"></button>
+                <div class="card-body mt-4">
+
+                    <form [formGroup]="searchForm" class="mb-3">
+                        <!-- <input type="text" formControlName="searchTerm" placeholder="Search airports"> -->
+                        <div class="input-group">
+                            <input type="text" class="form-control" formControlName="searchTerm"
+                                placeholder="Search airports" id="searchInput">
+                            <!-- TODO: add close button -->
+                            <!-- <button type="button" class="btn btn-outline-secondary btn-sm" (click)="clearSearchInput()">
+                                <i class="bi bi-x-lg"></i> </button> -->
+                            <!-- 
+                            <button type="button" class="btn-inputclear" aria-label="Close"
+                                (click)="clearSearchInput()"></button> -->
+                        </div>
+                    </form>
+
+                    <div class="mt-2">
+                        <ul class="list-group">
+                            @for (airport of filteredAirports; track airport.iata_code) {
+                            <li class="list-group-item d-flex justify-content-between align-items-start" tabindex="0">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-medium f-title"> {{ airport.name }}</div> {{ airport.city }}
+                                </div>
+                                <span class="badge text-bg-primary rounded-pill">14</span>
+                            </li>
+                            }
+                            @empty {
+                            <!-- TODO : translation -->
+                            <li class="list-group-item list-group-item-warning"> {{ 'MESSAGE.NO_RESULT_FOUND' |
+                                translate }}</li>
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

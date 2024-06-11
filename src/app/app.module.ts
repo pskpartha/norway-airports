@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AirportLocMapComponent } from './components/home/airport-loc-map/airport-loc-map.component';
 import { AirportListComponent } from './components/home/airport-list/airport-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 // AoT requires an exported function for factories
@@ -19,7 +20,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 @NgModule({
     declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent, AirportLocMapComponent, AirportListComponent],
-    imports: [BrowserModule, HttpClientModule, NgbModule, TranslateModule.forRoot({
+    imports: [BrowserModule, ReactiveFormsModule, HttpClientModule, NgbModule, TranslateModule.forRoot({
         loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,

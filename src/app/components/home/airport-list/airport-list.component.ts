@@ -1,10 +1,74 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
+import { Airport } from '../../../models/airport';
+import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-airport-list',
   templateUrl: './airport-list.component.html',
   styleUrl: './airport-list.component.scss'
 })
-export class AirportListComponent {
+export class AirportListComponent implements OnInit, OnDestroy {
 
+  airportList!: Airport[];
+  filteredAirports: Airport[] = [];
+  selectedAirport!: Airport;
+  showAirportList = false;
+  searchForm!: FormGroup;
+  private subscription?: Subscription;
+
+  private apiService = inject(ApiService);
+  constructor(private fb: FormBuilder) { }
+  ngOnInit(): void {
+    this.loadAirportList();
+
+    this.searchForm = this.fb.group({
+      searchTerm: ['', Validators.required]
+    });
+
+    // TODO: UNsubscription
+    this.searchForm.get('searchTerm')?.valueChanges
+      .pipe(
+        debounceTime(300), // Wait 300ms after each keystroke before filtering
+        distinctUntilChanged(), // Filter only if the value actually changes
+        tap(searchTerm => this.filterAirports(searchTerm))
+      )
+      .subscribe();
+  }
+
+  loadAirportList() {
+    this.subscription = this.apiService.getAirportList().subscribe({
+      next: data => {
+        console.log(data);
+
+        this.airportList = data;
+        this.filteredAirports = this.airportList;
+        this.selectedAirport = this.airportList[0];
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+  }
+
+  toggleAirportList(): void {
+    this.showAirportList = !this.showAirportList;
+  }
+
+  filterAirports(searchTerm: string) {
+    const searchTermLower = searchTerm.toLowerCase();
+    this.filteredAirports = this.airportList.filter(airport =>
+      airport.name.toLowerCase().includes(searchTermLower) ||
+      airport.city.toLowerCase().includes(searchTermLower)
+    );
+  }
+
+  clearSearchInput(): void {
+
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 }
