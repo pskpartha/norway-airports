@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { APP_LANGUAGES } from './app.constants';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'norway-airports';
   constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'no']);
+    const languageCodes = APP_LANGUAGES.map(lang => lang.code);
+    translate.addLangs(languageCodes);
     translate.setDefaultLang('en');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/en|no/) ? browserLang : 'en');
+    translate.use(browserLang && languageCodes.includes(browserLang) ? browserLang : 'en');
   }
 }

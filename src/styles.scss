@@ -3,10 +3,15 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
+:root {
+    --primary-clr: #2f3542;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-style: normal
+    font-style: normal;
+    color: var(--primary-clr);
 }
 
 .f-title {
@@ -19,4 +24,8 @@ body {
 
 .border-0 {
     border: 0 !important;
+}
+
+.c-pointer {
+    cursor: pointer;
 }

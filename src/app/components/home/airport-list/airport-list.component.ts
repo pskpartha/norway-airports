@@ -4,6 +4,7 @@ import { Airport } from '../../../models/airport';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { MapService } from '../../../services/map.service';
 
 @Component({
   selector: 'app-airport-list',
@@ -20,10 +21,12 @@ export class AirportListComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   private apiService = inject(ApiService);
+  private mapService = inject(MapService);
+
   constructor(private fb: FormBuilder) { }
   ngOnInit(): void {
     this.loadAirportList();
-
+    // TODO separate form
     this.searchForm = this.fb.group({
       searchTerm: ['', Validators.required]
     });
@@ -41,8 +44,6 @@ export class AirportListComponent implements OnInit, OnDestroy {
   loadAirportList() {
     this.subscription = this.apiService.getAirportList().subscribe({
       next: data => {
-        console.log(data);
-
         this.airportList = data;
         this.filteredAirports = this.airportList;
         this.selectedAirport = this.airportList[0];
@@ -65,9 +66,16 @@ export class AirportListComponent implements OnInit, OnDestroy {
     );
   }
 
+
+  updateAirportInfo(airport: Airport) {
+    this.mapService.focusLocationOnMap(airport.iata_code);
+  }
+
+
   clearSearchInput(): void {
 
   }
+
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }

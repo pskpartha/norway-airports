@@ -1,7 +1,8 @@
 {
     "HOME": {
         "TITLE": "Hello Angular with ngx-translate!",
-        "SELECT": "Change language"
+        "SELECT": "Change language",
+        "DEPARTURES": "Departures"
     },
     "MESSAGE": {
         "NO_RESULT_FOUND": "No results found"

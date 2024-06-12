@@ -1,8 +1,26 @@
 .search-area {
-    max-width: 360px;
-
     .selected-airport {
         position: relative;
+
+        .airport-name {
+
+            // background-color: #fff;
+            .icon-box {
+                background-color: #ffffff;
+
+            }
+        }
+
+        .btn-list {
+            background-color: transparent;
+            padding: 0;
+            border: none;
+
+            img {
+                width: 30px;
+            }
+
+        }
 
         .airportlist-wrapper {
             position: absolute;

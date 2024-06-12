@@ -1,7 +1,8 @@
 {
     "HOME": {
         "TITLE": "Hei Angular med ngx-translate!",
-        "SELECT": "Skifte språk"
+        "SELECT": "Skifte språk",
+        "DEPARTURES": "Avganger"
     },
     "MESSAGE": {
         "NO_RESULT_FOUND": "Ingen resultater"
