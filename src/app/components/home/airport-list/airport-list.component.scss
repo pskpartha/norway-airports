@@ -31,6 +31,35 @@
             background: white;
             z-index: 1000;
 
+            .airport-list-container {
+                height: calc(100vh - 400px);
+                overflow-y: scroll;
+            }
+
+            // TODO : check design
+            .airport-list-container::-webkit-scrollbar {
+                width: 5px;
+                /* Scrollbar width */
+            }
+
+            .airport-list-container::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                /* Track color */
+            }
+
+            .airport-list-container::-webkit-scrollbar-thumb {
+                background: #888;
+                /* Thumb color */
+            }
+
+            .airport-list-container::-webkit-scrollbar-thumb:hover {
+                background: #555;
+                /* Thumb color on hover */
+            }
+
+
+
+
             .card-wrapper {
                 position: relative;
 

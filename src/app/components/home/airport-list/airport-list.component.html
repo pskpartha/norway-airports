@@ -5,7 +5,7 @@
             <div class="icon-box rounded d-flex align-items-center justify-content-center me-3 p-1">
                 <img class="" src="./assets/icons/airport.svg" alt="">
             </div>
-            <h3 class="mb-0 fw-medium  f-title">{{selectedAirport?.name}}</h3>
+            <h3 class="fw-medium  f-title">{{selectedAirport?.name}}</h3>
         </div>
 
         <button type="button" class="btn-list ms-auto" (click)="toggleAirportList()">
@@ -31,11 +31,12 @@
                         </div>
                     </form>
 
-                    <div class="mt-2">
-                        <ul class="list-group">
+                    <div class="mt-2 airport-list-container">
+                        <ul class="list-group list-group-flush">
                             @for (airport of filteredAirports; track airport.iata_code) {
                             <li class="list-group-item d-flex justify-content-between align-items-start btn-hover-light c-pointer"
-                                tabindex="0" (click)="updateAirportInfo(airport)">
+                                tabindex="0" (click)="updateAirportInfo(airport)"
+                                (keydown.enter)="updateAirportInfo(airport)">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-medium f-title"> {{ airport.name }}</div> {{ airport.city }}
                                 </div>

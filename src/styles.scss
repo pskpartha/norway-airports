@@ -7,25 +7,70 @@
     --primary-clr: #2f3542;
 }
 
-body {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+* {
     color: var(--primary-clr);
 }
 
+body {
+
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: 0 !important;
+}
+
+// TODO px to rem
+p {
+    font-size: 14px !important;
+    ;
+}
+
 .f-title {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Ubuntu", sans-serif !important;
 }
 
 .bg-test {
     background-color: yellow;
 }
 
+
+.fw-semi {
+    font-weight: 500;
+}
+
 .border-0 {
     border: 0 !important;
 }
 
+.text-uppercase {
+    text-transform: uppercase;
+}
+
 .c-pointer {
     cursor: pointer;
+}
+
+.list-group-item {
+    border-color: #f7f2f2;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+// .hv-shadow {
+//     transition: box-shadow 0.3s ease-in-out 0.3s;
+//     box-shadow: none;
+// }
+
+.hv-shadow:hover {
+    box-shadow: var(--bs-box-shadow-sm) !important
 }

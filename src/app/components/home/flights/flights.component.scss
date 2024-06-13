@@ -1,4 +1,14 @@
 .flights {
+    .alert {
+        border-radius: 2px;
+        border: none;
+        padding: 3px 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 
     .title {
         font-size: 2rem;
@@ -8,6 +18,24 @@
             width: 30px;
 
         }
+    }
 
+    .flight-item {
+        .location {
+            color: #b71540;
+        }
+
+        .date-time {
+            min-width: 120px;
+        }
+
+        .date-time,
+        .flight-status {
+            min-width: 110px;
+        }
+    }
+
+    .icon img {
+        width: 30px;
     }
 }
