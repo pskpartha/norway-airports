@@ -4,15 +4,17 @@
 @import 'bootstrap/scss/bootstrap';
 
 :root {
-    --primary-clr: #2f3542;
+    --primary-clr: #002868;
 }
 
 * {
     color: var(--primary-clr);
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
-
     font-weight: 400;
     font-style: normal;
 }
@@ -24,13 +26,13 @@ h4,
 h5,
 h6,
 p {
+    font-weight: 400 !important;
     margin-bottom: 0 !important;
 }
 
-// TODO px to rem
+// Conversion from px to rem for paragraph
 p {
-    font-size: 14px !important;
-    ;
+    font-size: 0.875rem !important; // Assuming base font size is 16px
 }
 
 .f-title {
@@ -40,7 +42,6 @@ p {
 .bg-test {
     background-color: yellow;
 }
-
 
 .fw-semi {
     font-weight: 500;
@@ -58,6 +59,10 @@ p {
     cursor: pointer;
 }
 
+.form-control {
+    border-color: #f7f2f2;
+}
+
 .list-group-item {
     border-color: #f7f2f2;
 }
@@ -66,11 +71,11 @@ p {
     display: none;
 }
 
-// .hv-shadow {
-//     transition: box-shadow 0.3s ease-in-out 0.3s;
-//     box-shadow: none;
-// }
+.arrow-icon img {
+    width: 30px;
+}
 
+// Removed commented-out class for hover shadow
 .hv-shadow:hover {
-    box-shadow: var(--bs-box-shadow-sm) !important
+    box-shadow: var(--bs-box-shadow-sm) !important;
 }

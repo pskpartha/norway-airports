@@ -8,11 +8,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AirportLocMapComponent } from './components/home/airport-list/airport-loc-map/airport-loc-map.component';
+import { AirportLocMapComponent } from './components/home/airport-loc-map/airport-loc-map.component';
 import { AirportListComponent } from './components/home/airport-list/airport-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FlightsComponent } from './components/home/flights/flights.component';
+import { FlightsComponent } from './components/home/airport-list/flights/flights.component';
 import { LanguageSwitcherComponent } from './components/header/language-switcher/language-switcher.component';
 
 

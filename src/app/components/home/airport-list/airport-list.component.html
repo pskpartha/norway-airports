@@ -1,11 +1,11 @@
-<section class="search-area my-5">
+<section class="search-area my-5 ms-md-5">
     <!-- TODO: translate -->
     <div class="selected-airport d-flex align-items-center">
-        <div class="airport-name d-flex align-items-center pe-3">
-            <div class="icon-box rounded d-flex align-items-center justify-content-center me-3 p-1">
+        <div class="airport-name d-flex align-items-center pe-3 ">
+            <!-- <div class="icon-box rounded d-flex align-items-center justify-content-center me-3 p-1">
                 <img class="" src="./assets/icons/airport.svg" alt="">
-            </div>
-            <h3 class="fw-medium  f-title">{{selectedAirport?.name}}</h3>
+            </div> -->
+            <h1 class="f-title">{{selectedAirport?.name}}</h1>
         </div>
 
         <button type="button" class="btn-list ms-auto" (click)="toggleAirportList()">
@@ -38,9 +38,13 @@
                                 tabindex="0" (click)="updateAirportInfo(airport)"
                                 (keydown.enter)="updateAirportInfo(airport)">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-medium f-title"> {{ airport.name }}</div> {{ airport.city }}
+                                    <div class="fw-medium f-title"> {{ airport.name }}</div>
+                                    <div>
+                                        <small class="text-body-secondary">{{ airport.city }}</small>
+                                    </div>
                                 </div>
-                                <span class="badge text-bg-primary rounded-pill">14</span>
+                                <span class="arrow-icon"><img src="./assets/icons/arrow-right.svg"
+                                        alt="View All"></span>
                             </li>
                             }
                             @empty {
@@ -55,6 +59,7 @@
             </div>
         </div>
     </div>
+    <!-- flight details -->
+    <app-flights [airportId]="selectedAirport?.iata_code"></app-flights>
 
-    <app-airport-loc-map [airportData]="airportList"></app-airport-loc-map>
 </section>

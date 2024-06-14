@@ -1,6 +1,6 @@
 {
     "HOME": {
-        "TITLE": "Hello Angular with ngx-translate!",
+        "LOGO_TITLE": "airports",
         "SELECT": "Change language",
         "DEPARTURES": "Departures"
     },

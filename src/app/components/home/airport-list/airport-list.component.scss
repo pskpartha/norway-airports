@@ -1,13 +1,14 @@
 .search-area {
     .selected-airport {
         position: relative;
+        background-color: #002868;
+        padding: 10px 30px;
 
         .airport-name {
+            color: #ffffff;
 
-            // background-color: #fff;
             .icon-box {
                 background-color: #ffffff;
-
             }
         }
 
@@ -19,20 +20,19 @@
             img {
                 width: 30px;
             }
-
         }
 
         .airportlist-wrapper {
             position: absolute;
             top: 100%;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 360px;
             transition: opacity 0.3s ease-in-out;
             background: white;
             z-index: 1000;
 
             .airport-list-container {
-                height: calc(100vh - 400px);
+                max-height: calc(100vh - 400px);
                 overflow-y: scroll;
             }
 
@@ -43,12 +43,12 @@
             }
 
             .airport-list-container::-webkit-scrollbar-track {
-                background: #f1f1f1;
+                // background: #f1f1f1;
                 /* Track color */
             }
 
             .airport-list-container::-webkit-scrollbar-thumb {
-                background: #888;
+                // background: #888;
                 /* Thumb color */
             }
 
@@ -56,9 +56,6 @@
                 background: #555;
                 /* Thumb color on hover */
             }
-
-
-
 
             .card-wrapper {
                 position: relative;
@@ -69,9 +66,6 @@
                     top: 10px;
                 }
             }
-
         }
     }
-
-
 }

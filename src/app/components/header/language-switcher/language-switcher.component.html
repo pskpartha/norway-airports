@@ -1,17 +1,17 @@
 <div class="language-switcher">
     <div ngbDropdown class="d-inline-block" display="dynamic">
-        <button type="button" class="btn btn-light dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
-            <img [src]="langFlagAssetUrl + currentLang.icon+'.svg'" [alt]="currentLang.name"> {{currentLang.name |
-            uppercase}}
+        <button type="button" class="btn btn-light dropdown-toggle f-title" id="lang-switch-dropdown" ngbDropdownToggle>
+            <img [src]="langFlagAssetUrl + currentLang.icon+'.svg'" [alt]="currentLang.name" class="me-2">
+            {{currentLang.name}}
         </button>
 
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="shadow-sm border-0">
+        <div ngbDropdownMenu aria-labelledby="lang-switch-dropdown" class="shadow-sm border-0">
             <ul class="list-group py-2 px-3 list-group-flush">
                 @for (language of availableLanguages; track language.code) {
-                <li ngbDropdownItem class="list-group-item d-flex align-items-center btn-hover-light c-pointer"
+                <li ngbDropdownItem class="list-group-item d-flex align-items-center btn-hover-light c-pointer f-title"
                     tabindex="0" (keydown.enter)="switchLanguage(language)" (click)="switchLanguage(language)">
                     <img [src]="langFlagAssetUrl + language.icon+'.svg'" [alt]="language.name" class="me-2">
-                    {{language.name | uppercase}}
+                    {{language.name}}
                 </li>
                 }
             </ul>

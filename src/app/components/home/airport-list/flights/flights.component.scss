@@ -23,6 +23,7 @@
     .flight-item {
         .location {
             color: #b71540;
+            font-weight: 700 !important;
         }
 
         .date-time {
@@ -35,7 +36,5 @@
         }
     }
 
-    .icon img {
-        width: 30px;
-    }
+
 }

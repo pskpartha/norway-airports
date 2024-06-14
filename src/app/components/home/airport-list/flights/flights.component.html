@@ -1,29 +1,29 @@
-<div class="flights my-5 ms-md-5 card border-0">
-    <div class="title p-4">
-        <h4>
+<div class="flights card border-0 bg-light">
+    <div class="title py-4">
+        <h4 class="f-title">
             <img class="icon me-3" src="./assets/icons/departures.svg" alt="Departures"> {{'HOME.DEPARTURES'|translate}}
         </h4>
     </div>
 
-    <div class="departure-list px-4">
+    <div class="departure-list px-5">
         <ul class="list-group list-group-flush">
             @for (flight of flightInfo; track $index) {
             <li class="list-group-item d-flex justify-content-between align-items-start" tabindex="0">
                 <article class="p-2 flight-item w-100">
                     <a routerLink="" class="d-flex" tabindex="-1">
                         <div class="pe-2 date-time">
-                            <h5 class="mb-1"><b>{{flight.depTime}}</b></h5>
+                            <h6 class="mb-1 f-title"><b>{{flight.depTime}}</b></h6>
                             <small class="text-body-secondary"> <del>{{flight.oldTime}}</del></small>
                             <p class="fw-semi"> {{flight.date}}</p>
                         </div>
                         <div class="flex-grow-1 pe-2">
                             <div class="d-flex">
-                                <h5 class="mb-1 f-title location">{{flight.destination}}</h5>
+                                <h6 class="mb-1 f-title location"> {{flight.destination}}</h6>
 
                             </div>
                             @for (airline of flight.airlines; track $index)
                             {
-                            <p class="mb-1"> <b class="me-2"> {{airline.code}}</b>
+                            <p class="mb-0"> <b class="me-2"> {{airline.code}}</b>
                                 <small class="text-body-secondary">
                                     {{airline.name}}
                                 </small>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="flight-status">
                             <small class="text-body-secondary ms-auto f-title fw-semi">
-                                <div class="alert mb-1 text-uppercase"
+                                <div class="alert mb-1 text-uppercase f-title"
                                     [ngClass]="{'alert-warning': flight.status.type === 'delayed', 'alert-success': flight.status.type === 'departed', 'alert-info': flight.status.type === 'onTime', 'alert-danger': flight.status.type === 'cancelled'}"
                                     role="alert">
                                     {{flight.status.name}}
@@ -56,7 +56,7 @@
         </ul>
 
         <div class="py-3 d-flex justify-content-end ">
-            <a [routerLink]="['/routePath']" class="text-uppercase fw-semi"> View All <span class="icon"><img
+            <a [routerLink]="['/routePath']" class="text-uppercase fw-semi"> View All <span class="arrow-icon"><img
                         src="./assets/icons/arrow-right.svg" alt="View All"></span></a>
         </div>
     </div>

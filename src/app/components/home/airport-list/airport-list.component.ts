@@ -46,12 +46,36 @@ export class AirportListComponent implements OnInit, OnDestroy {
       next: data => {
         this.airportList = data;
         this.filteredAirports = this.airportList;
+        this.markAirportLocOnMap(this.airportList);
         this.selectedAirport = this.airportList[0];
+        console.log('>>>>>>>>', this.selectedAirport);
+
       },
       error: error => {
         console.error(error);
       }
     });
+  }
+
+
+
+  markAirportLocOnMap(airportData: Airport[]): void {
+    const locationFeatures = airportData.map((airport: Airport) => {
+      const coordinates = [airport.lng, airport.lat];
+      return {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates
+        },
+        properties: {
+          airportId: airport.iata_code,
+          title: airport.name,
+          description: airport.city
+        }
+      };
+    });
+    this.mapService.addMarkerMapView(locationFeatures);
   }
 
   toggleAirportList(): void {
@@ -68,6 +92,8 @@ export class AirportListComponent implements OnInit, OnDestroy {
 
 
   updateAirportInfo(airport: Airport) {
+    this.showAirportList = false;
+    this.selectedAirport = airport;
     this.mapService.focusLocationOnMap(airport.iata_code);
   }
 

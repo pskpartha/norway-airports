@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 3. create components
 4. add header + language switch option
 5. add airport list view + search option
-6. add departure view
+6. add flight list view
 7. add routing to departure details view
 8. add api service for dynamic data
 9. add meta details for SEO
