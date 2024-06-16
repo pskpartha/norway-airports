@@ -1,22 +1,48 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, DoCheck, ElementRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { Airport } from '../../../models/airport';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { MapService } from '../../../services/map.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-airport-list',
   templateUrl: './airport-list.component.html',
-  styleUrl: './airport-list.component.scss'
+  styleUrl: './airport-list.component.scss',
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('1s ease-out',
+              style({ height: 300, opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ height: 300, opacity: 1 }),
+            animate('1s ease-in',
+              style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class AirportListComponent implements OnInit, OnDestroy {
 
   airportList!: Airport[];
   filteredAirports: Airport[] = [];
   selectedAirport!: Airport;
-  showAirportList = false;
+
+
+  showFlightList = false;
   searchForm!: FormGroup;
   private subscription?: Subscription;
 
@@ -24,6 +50,7 @@ export class AirportListComponent implements OnInit, OnDestroy {
   private mapService = inject(MapService);
 
   constructor(private fb: FormBuilder) { }
+
   ngOnInit(): void {
     this.loadAirportList();
     // TODO separate form
@@ -78,8 +105,10 @@ export class AirportListComponent implements OnInit, OnDestroy {
     this.mapService.addMarkerMapView(locationFeatures);
   }
 
-  toggleAirportList(): void {
-    this.showAirportList = !this.showAirportList;
+  closeFlightList(): void {
+    this.showFlightList = false;
+    // this.showAirportList = !this.showAirportList;
+    this.mapService.resetMapView();
   }
 
   filterAirports(searchTerm: string) {
@@ -91,18 +120,22 @@ export class AirportListComponent implements OnInit, OnDestroy {
   }
 
 
-  updateAirportInfo(airport: Airport) {
-    this.showAirportList = false;
+  updateAirportInfo(airport: Airport,) {
+    // this.showAirportList = false;
     this.selectedAirport = airport;
     this.mapService.focusLocationOnMap(airport.iata_code);
+    this.showFlightList = true;
   }
 
 
   clearSearchInput(): void {
-
+    this.searchForm.get('searchTerm')?.setValue('');
   }
 
   ngOnDestroy(): void {
+    this.showFlightList = false;
     this.subscription?.unsubscribe();
   }
+
 }
+

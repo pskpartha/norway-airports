@@ -1,71 +1,78 @@
-.search-area {
-    .selected-airport {
-        position: relative;
-        background-color: #002868;
-        padding: 10px 30px;
+.airportlist-container {
+    position: relative;
+    height: 100%;
 
-        .airport-name {
-            color: #ffffff;
+    .close-icon-button {
 
-            .icon-box {
-                background-color: #ffffff;
-            }
+        position: absolute;
+        right: 2px;
+        /* Adjust based on padding and border of input */
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        /* Remove border */
+        background: none;
+        /* Remove background */
+        cursor: pointer;
+        z-index: 10;
+
+        img {
+            width: 14px;
         }
+    }
 
-        .btn-list {
-            background-color: transparent;
-            padding: 0;
-            border: none;
+    .list-group-flush>.list-group-item {
+        background-color: transparent !important;
+    }
 
-            img {
-                width: 30px;
-            }
+    .list-item-wrapper {
+        max-height: 710px;
+        overflow-y: scroll;
+    }
+
+    // TODO : check design
+    .list-item-wrapper::-webkit-scrollbar {
+        width: 0;
+        /* Scrollbar width */
+    }
+
+    .list-item-wrapper::-webkit-scrollbar-track {
+        // background: #f1f1f1;
+        /* Track color */
+    }
+
+    .list-item-wrapper::-webkit-scrollbar-thumb {
+        // background: #888;
+        /* Thumb color */
+    }
+
+    .list-item-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        /* Thumb color on hover */
+    }
+
+
+    .airportlist-details {
+        position: absolute;
+        top: 0;
+        background-color: antiquewhite;
+        overflow-y: hidden;
+        height: 100%;
+        z-index: 999;
+
+        @media screen and (max-width:992px) {
+            // height: 100vh;
         }
+    }
 
-        .airportlist-wrapper {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 360px;
-            transition: opacity 0.3s ease-in-out;
-            background: white;
-            z-index: 1000;
+    @media screen and (max-width:992px) {
+        // max-height: 400px;
+        // padding-bottom: 100px;
 
-            .airport-list-container {
-                max-height: calc(100vh - 400px);
-                overflow-y: scroll;
-            }
 
-            // TODO : check design
-            .airport-list-container::-webkit-scrollbar {
-                width: 5px;
-                /* Scrollbar width */
-            }
-
-            .airport-list-container::-webkit-scrollbar-track {
-                // background: #f1f1f1;
-                /* Track color */
-            }
-
-            .airport-list-container::-webkit-scrollbar-thumb {
-                // background: #888;
-                /* Thumb color */
-            }
-
-            .airport-list-container::-webkit-scrollbar-thumb:hover {
-                background: #555;
-                /* Thumb color on hover */
-            }
-
-            .card-wrapper {
-                position: relative;
-
-                .btn-close {
-                    position: absolute;
-                    right: 10px;
-                    top: 10px;
-                }
-            }
+        .list-item-wrapper {
+            // max-height: 310px;
+            overflow-y: scroll;
         }
     }
 }

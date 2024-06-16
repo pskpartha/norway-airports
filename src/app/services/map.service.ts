@@ -77,7 +77,12 @@ export class MapService {
 
     this.map.addLayer(vectorLayer);
 
+    this.resetMapView();
 
+  }
+
+
+  resetMapView() {
     // Focus the map's view to fit all the features
     this.map.getView().fit(this.vectorSource.getExtent(), {
       padding: [50, 50, 50, 50], // Optional padding around the features

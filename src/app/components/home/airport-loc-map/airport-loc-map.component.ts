@@ -14,24 +14,6 @@ export class AirportLocMapComponent implements AfterViewInit, OnDestroy {
 
 
 
-  markAirportLocOnMap(airportData: Airport[]): void {
-    const locationFeatures = airportData.map((airport: Airport) => {
-      const coordinates = [airport.lng, airport.lat];
-      return {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates
-        },
-        properties: {
-          airportId: airport.iata_code,
-          title: airport.name,
-          description: airport.city
-        }
-      };
-    });
-    this.mapService.addMarkerMapView(locationFeatures);
-  }
 
   ngAfterViewInit(): void {
     this.mapService.initMapView(this.mapContainerElement.nativeElement);

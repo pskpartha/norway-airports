@@ -11,15 +11,10 @@
     color: var(--primary-clr);
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-style: normal;
 }
 
-body {
-    font-weight: 400;
-    font-style: normal;
-}
 
-h1,
+
 h2,
 h3,
 h4,
@@ -59,23 +54,97 @@ p {
     cursor: pointer;
 }
 
-.form-control {
-    border-color: #f7f2f2;
-}
 
+.border-bottom,
+.border-top,
+.form-control,
 .list-group-item {
-    border-color: #f7f2f2;
+    border-color: #f7f2f2 !important;
 }
 
 .dropdown-toggle::after {
     display: none;
 }
 
+.arrow-icon {
+    display: flex;
+    width: 32px;
+    background-color: #fff;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 .arrow-icon img {
-    width: 30px;
+    width: 24px;
 }
 
 // Removed commented-out class for hover shadow
 .hv-shadow:hover {
     box-shadow: var(--bs-box-shadow-sm) !important;
 }
+
+// Sub header
+.sub-header {
+    .back-link {
+        font-weight: 400;
+        color: #002868 !important;
+        text-decoration: none;
+    }
+
+}
+
+.icon-button {
+    img {
+        width: 24px;
+    }
+}
+
+.icon-button {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
+// .icon-button {
+//     background: none;
+//     /* Removes any background color */
+//     border: none;
+//     /* Removes border */
+//     padding: 0;
+//     /* Removes padding */
+//     margin: 0;
+//     /* Adjust margin as necessary */
+//     cursor: pointer;
+//     /* Makes the cursor a pointer to indicate it's clickable */
+//     outline: none;
+//     /* Removes the focus outline */
+// }
+
+// .icon-button .arrow-icon img {
+//     display: block;
+//     /* Ensures the image is not inline */
+//     width: 24px;
+//     /* Maintains the original image aspect ratio */
+//     height: 24px;
+//     /* Example height; adjust as needed */
+// }
+
+// .icon-button:hover,
+// .icon-button:focus {
+//     transition: transform 0.3s ease;
+//     background: transparent;
+//     /* Keeps the background transparent on hover/focus */
+//     outline: none;
+//     /* Ensures no outline is shown on focus */
+// }
+
+// .icon-button:focus {}
+
+// .icon-button:hover {
+//     transform: scale(1.1);
+//     /* Enlarges the button slightly when hovered */
+//     transition: transform 0.3s ease;
+//     /* Smooth transition for the transform */
+// }

@@ -1,16 +1,15 @@
-<div class="flights card border-0 bg-light">
+<div class="flights ">
     <div class="title py-4">
         <h4 class="f-title">
             <img class="icon me-3" src="./assets/icons/departures.svg" alt="Departures"> {{'HOME.DEPARTURES'|translate}}
         </h4>
     </div>
-
-    <div class="departure-list px-5">
+    <div class="departure-list card  border-0">
         <ul class="list-group list-group-flush">
             @for (flight of flightInfo; track $index) {
-            <li class="list-group-item d-flex justify-content-between align-items-start" tabindex="0">
-                <article class="p-2 flight-item w-100">
-                    <a routerLink="" class="d-flex" tabindex="-1">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <a routerLink="/flight-details" class="p-2 flight-item w-100" tabindex="0">
+                    <article class="d-flex">
                         <div class="pe-2 date-time">
                             <h6 class="mb-1 f-title"><b>{{flight.depTime}}</b></h6>
                             <small class="text-body-secondary"> <del>{{flight.oldTime}}</del></small>
@@ -49,16 +48,17 @@
                                 <b class="">{{flight.gate}}</b>
                             </p>
                         </div>
-                    </a>
-                </article>
+
+                    </article>
+                </a>
             </li>
             }
         </ul>
-
-        <div class="py-3 d-flex justify-content-end ">
-            <a [routerLink]="['/routePath']" class="text-uppercase fw-semi"> View All <span class="arrow-icon"><img
-                        src="./assets/icons/arrow-right.svg" alt="View All"></span></a>
-        </div>
     </div>
-
+    <div class="py-3 d-flex justify-content-end ">
+        <a routerLink="/all-flights" class="back-link d-flex align-items-center f-title" tabindex="0">
+            All flights <span class="arrow-icon ms-2"><img src="./assets/icons/arrow-right.svg"
+                    alt="All flights"></span>
+        </a>
+    </div>
 </div>

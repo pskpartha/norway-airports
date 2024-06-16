@@ -1,3 +1,26 @@
 .home-hero {
-    // padding-top: 40px;
+    .hero {
+        display: flex;
+
+        aside {
+            width: 480px;
+        }
+
+        .hero-map {
+            flex-grow: 1;
+        }
+
+        @media screen and (max-width:992px) {
+            flex-direction: column;
+            justify-content: center;
+
+            aside {
+                width: 100%;
+            }
+
+            .hero-map {
+                width: 100%;
+            }
+        }
+    }
 }
