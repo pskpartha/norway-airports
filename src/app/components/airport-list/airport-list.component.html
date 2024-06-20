@@ -1,0 +1,36 @@
+<section class="airportlist-container bg-light">
+    <div class="airportlist">
+        <div class="search-box py-4 d-flex align-items-center border-bottom bg-white">
+            <form [formGroup]="searchForm" class="w-100 px-3 px-md-5">
+                <div class="input-group">
+                    <input type="text" class="form-control f-title" formControlName="searchTerm"
+                        placeholder="Search airports" id="searchInput">
+
+                    @if (searchForm.get('searchTerm')?.value) {
+                    <button type="button" class="icon-button close-icon-button me-2" (click)="clearSearchInput()"
+                        tabindex="0"><span class="arrow-icon"><img src="./assets/icons/close.svg"
+                                alt="All flights"></span></button>
+                    }
+
+                </div>
+            </form>
+        </div>
+        <div class="list-item-wrapper py-4 px-3 px-md-5">
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let airport of filteredAirports" class="list-group-item w-100 mb-1"
+                    (click)="updateAirportInfo(airport)" (keydown.enter)="updateAirportInfo(airport)">
+                    <a [routerLink]="['/airports', airport.iata_code]"
+                        class="d-flex justify-content-between align-items-start c-pointer ">
+                        <div class="ms-2 me-auto">
+                            <h5 class="f-title"> {{ airport.name }}</h5>
+                            <p>
+                                <small class="text-body-secondary">{{ airport.iata_code }}</small>
+                            </p>
+                        </div>
+                        <span class="arrow-icon"><img src="./assets/icons/arrow-right.svg" alt="View All"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

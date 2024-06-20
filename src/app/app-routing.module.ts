@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { FlightDetailsComponent } from './components/flight-details/flight-details.component';
-import { AllFlightsComponent } from './components/all-flights/all-flights.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-
+import { AirportListComponent } from './components/airport-list/airport-list.component';
+import { FlightSchedulesComponent } from './components/flight-schedules/flight-schedules.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'flight-details', component: FlightDetailsComponent },
-    { path: 'all-flights', component: AllFlightsComponent },
-    { path: '**', component: NotFoundComponent }
+  { path: '', redirectTo: '/airports', pathMatch: 'full' },
+  { path: 'airports', component: AirportListComponent },
+  { path: 'airports/:airport_iata', component: FlightSchedulesComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

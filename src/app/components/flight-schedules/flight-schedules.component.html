@@ -1,0 +1,84 @@
+<section class="flights bg-light">
+    <div [@inOutAnimation]>
+        <div class="bg-white">
+            <div class="flight-header px-5 border-bottom py-3 d-flex">
+                <div class="py-2 d-flex justify-content-end ">
+                    <a routerLink="/airports" class="back-link d-flex align-items-center f-title" tabindex="0">
+                        <span class="arrow-icon me-3"><img src="./assets/icons/arrow-left.svg" alt="All flights"></span>
+
+                    </a>
+                </div>
+                <div>
+                    <h4 class="f-title"> {{airport?.name}}</h4>
+                    <small class="text-body-secondary">{{ airport?.iata_code }}</small>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="title px-5 py-3 bg-light">
+            <h5 class="f-title">
+                <img class="icon me-3" src="./assets/icons/departures.svg" alt="Departures">
+                {{'HOME.DEPARTURES'|translate}}
+            </h5>
+        </div>
+        <div class="departure-list card  px-5  border-0 bg-light">
+            <ul class="list-group list-group-flush">
+                @for (flight of schedules; track $index) {
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <a routerLink="/flight-details" class="p-2 flight-item w-100" tabindex="0">
+                        <article class="d-sm-flex d-block">
+                            <div class="pe-3 date-time pb-2 mb-2 mb-sm-0 pb-sm-0 border-bottom-sm">
+                                <h6 class="mb-1 f-title"><b>{{flight.dep_time | date:'HH:mm'}}</b></h6>
+                                <small class="text-body-secondary"> <del>{{flight.dep_time |
+                                        date:'HH:mm'}}</del></small>
+                                <p class="fw-semi"> {{flight.dep_time|date:'EEE, MMMM d, y'}}</p>
+                            </div>
+                            <div class="flex-grow-1  d-flex">
+                                <div class="pe-2">
+                                    <div class="d-flex">
+                                        <h6 class="mb-1 f-title location"> {{flight.arr_iata}}</h6>
+                                    </div>
+                                    <p class="mb-0">
+                                        <b class="me-2"> {{flight.flight_iata}}</b>
+                                    </p>
+                                    <p class="mb-0" *ngFor="let associateFlight of flight.associates">
+                                        <b>{{associateFlight.flight_iata}}</b>
+                                    </p>
+                                </div>
+                                <div class="flight-status ms-auto">
+                                    <small class="text-body-secondary ms-auto f-title fw-semi">
+                                        <div class="alert mb-1 text-uppercase f-title"
+                                            [ngClass]="{'alert-warning': flight.status === 'landed', 'alert-success': flight.status === 'active', 'alert-info': flight.status === 'scheduled', 'alert-danger': flight.status === 'cancelled'}"
+                                            role="alert">
+                                            {{flight.status}}
+
+                                        </div>
+                                    </small>
+
+                                    <!-- TODO translation -->
+                                    <p class="text-uppercase">
+                                        <small class="text-body-secondary pe-2">
+                                            Gate
+                                        </small>
+                                        <b class="">{{flight.dep_gate}}</b>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </article>
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="py-3 pe-5 d-flex justify-content-end ">
+            <a routerLink="/all-flights" class="back-link d-flex align-items-center f-title" tabindex="0">
+                All flights <span class="arrow-icon ms-2"><img src="./assets/icons/arrow-right.svg"
+                        alt="All flights"></span>
+            </a>
+        </div>
+    </div>
+
+</section>

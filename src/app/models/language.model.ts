@@ -1,4 +1,4 @@
-export interface AppLanguage {
+export interface ILanguage {
     icon: string;
     code: string;
     name: string;

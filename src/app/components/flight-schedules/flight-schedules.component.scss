@@ -1,5 +1,6 @@
 .flights {
     height: 100%;
+    width: 100%;
 
     .alert {
         border-radius: 2px;
@@ -39,4 +40,18 @@
     }
 
 
+
+    @media screen and (max-width: 576px) {
+        .border-bottom-sm {
+            border-bottom: 2px dashed #f7f2f2;
+        }
+
+        .list-group {
+            background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        .list-group-flush>.list-group-item {
+            margin-bottom: 10px !important;
+        }
+    }
 }

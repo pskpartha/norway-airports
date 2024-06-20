@@ -1,7 +1,7 @@
-<header>
+<header class="sticky-top bg-white">
     <!-- Navbar -->
-    <nav class="navbar border-bottom">
-        <div class="container">
+    <nav class="navbar border-bottom ">
+        <div class="container-fluid mx-5">
             <!-- Brand/logo -->
             <a class="navbar-brand" href="#">
                 <img class="logo" src="./assets/logo/norway-flag.svg" alt="Norway flag">
@@ -10,13 +10,6 @@
 
             <div class="lang-bar">
                 <app-language-switcher></app-language-switcher>
-                <!-- <label>
-                    {{ 'HOME.SELECT' | translate }}
-                    <select #langSelect (change)="translate.use(langSelect.value)">
-                        <option *ngFor="let lang of translate.getLangs()" [value]="lang"
-                            [selected]="lang === translate.currentLang">{{ lang }}</option>
-                    </select>
-                </label> -->
             </div>
         </div>
     </nav>

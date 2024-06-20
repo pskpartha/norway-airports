@@ -13,47 +13,46 @@ import Style from 'ol/style/Style';
 import GeoJSON from 'ol/format/GeoJSON';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapService {
   map!: Map;
   vectorSource!: VectorSource;
 
-  constructor() { }
+  constructor() {}
 
   initMapView(targetId: string): void {
     this.map = new Map({
       target: targetId,
       layers: [
         new TileLayer({
-          source: new OSM()
-        })
+          source: new OSM(),
+        }),
       ],
       view: new View({
         center: [0, 0], // Adjust center coordinates if needed
-        zoom: 2 // Set initial zoom level
-      })
+        zoom: 2, // Set initial zoom level
+      }),
     });
   }
 
   //  TODO add interface to replace any
   addMarkerMapView(locationData: any[]): void {
-    console.log(locationData);
     const geojsonObject = {
-      'type': 'FeatureCollection',
-      'crs': {
-        'type': 'name',
-        'properties': {
-          'name': 'EPSG:3857',
+      type: 'FeatureCollection',
+      crs: {
+        type: 'name',
+        properties: {
+          name: 'EPSG:3857',
         },
       },
-      'features': locationData
-    }
+      features: locationData,
+    };
     this.vectorSource = new VectorSource({
       features: new GeoJSON().readFeatures(geojsonObject, {
         dataProjection: 'EPSG:4326', // GeoJSON is typically in WGS 84
-        featureProjection: 'EPSG:3857' // Map's projection
-      })
+        featureProjection: 'EPSG:3857', // Map's projection
+      }),
     });
 
     // Define a common style for all features
@@ -63,56 +62,57 @@ export class MapService {
         anchorXUnits: 'fraction',
         anchorYUnits: 'fraction',
         src: './assets/icons/airport.png', // Replace with the path to your icon image
-        scale: 0.2 // Adjust scale to suit your needs
-      })
+        scale: 0.2, // Adjust scale to suit your needs
+      }),
     });
 
     // Apply the style to each feature
-    this.vectorSource.getFeatures().forEach(feature => feature.setStyle(iconStyle));
-
+    this.vectorSource
+      .getFeatures()
+      .forEach((feature) => feature.setStyle(iconStyle));
 
     const vectorLayer = new VectorLayer({
-      source: this.vectorSource
+      source: this.vectorSource,
     });
 
     this.map.addLayer(vectorLayer);
 
     this.resetMapView();
-
   }
-
 
   resetMapView() {
     // Focus the map's view to fit all the features
     this.map.getView().fit(this.vectorSource.getExtent(), {
-      padding: [50, 50, 50, 50], // Optional padding around the features
-      duration: 1000  // Optional animation duration in ms
+      padding: [50, 50, 50, 50],
+      duration: 1000,
     });
   }
 
   focusLocationOnMap(locationId: string): void {
-    const feature = this.vectorSource.getFeatures().find(
-      (f) => f.get('airportId') === locationId
-    );
+    const feature = this.vectorSource
+      .getFeatures()
+      .find((f) => f.get('airportId') === locationId);
 
     if (feature) {
       const geometry = feature.getGeometry();
 
-      if (geometry instanceof Point) { // Check for specific geometry type (recommended)
+      if (geometry instanceof Point) {
+        // Check for specific geometry type (recommended)
         const coordinates = geometry.getCoordinates();
         this.map.getView().animate({
           center: coordinates,
           zoom: 10, // Adjust zoom level as needed
-          duration: 1000 // Smooth animation over 1 second
+          duration: 1000, // Smooth animation over 1 second
         });
       } else {
-        console.warn(`Geometry type for feature '${locationId}' is not supported.`);
+        console.warn(
+          `Geometry type for feature '${locationId}' is not supported.`
+        );
       }
     } else {
       console.warn(`Feature with name '${locationId}' not found.`);
     }
   }
-
 
   clearMapView(): void {
     this.map.setTarget(undefined);

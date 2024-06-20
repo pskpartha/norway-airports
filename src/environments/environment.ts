@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    apiBaseUrl: ''
+    airlabApiKey: "",
+    apiBaseUrl: 'http://localhost:3000/'
 };
