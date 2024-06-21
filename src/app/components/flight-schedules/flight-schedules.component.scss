@@ -23,35 +23,5 @@
         }
     }
 
-    .flight-item {
-        .location {
-            color: #b71540;
-            font-weight: 700 !important;
-        }
 
-        .date-time {
-            min-width: 120px;
-        }
-
-        .date-time,
-        .flight-status {
-            min-width: 110px;
-        }
-    }
-
-
-
-    @media screen and (max-width: 576px) {
-        .border-bottom-sm {
-            border-bottom: 2px dashed #f7f2f2;
-        }
-
-        .list-group {
-            background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-        }
-
-        .list-group-flush>.list-group-item {
-            margin-bottom: 10px !important;
-        }
-    }
 }

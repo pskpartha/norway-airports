@@ -1,11 +1,5 @@
 import { Component, OnInit, effect, inject, input } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
+
 import { IAirportSchedule } from '../../models/schedule.model';
 import { ApiService } from '../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,18 +13,6 @@ import { AllSchedulesComponent } from './all-schedules/all-schedules.component';
   selector: 'app-flight-schedules',
   templateUrl: './flight-schedules.component.html',
   styleUrl: './flight-schedules.component.scss',
-  animations: [
-    trigger('inOutAnimation', [
-      transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('1s ease-out', style({ height: 300, opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ height: 300, opacity: 1 }),
-        animate('1s ease-in', style({ height: 0, opacity: 0 })),
-      ]),
-    ]),
-  ],
 })
 export class FlightSchedulesComponent implements OnInit {
   schedules: IAirportSchedule[] = [];
@@ -59,7 +41,6 @@ export class FlightSchedulesComponent implements OnInit {
       this.apiService.getAirportInfo(airportIATA).subscribe({
         next: (data) => {
           this.airport = data;
-          console.log(this.airport);
           this.mapService.focusLocationOnMap(airportIATA, this.airport);
         },
         error: (error) => {

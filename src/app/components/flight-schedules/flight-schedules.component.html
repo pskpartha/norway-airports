@@ -1,7 +1,7 @@
 <section class="flights bg-light">
-    <div [@inOutAnimation]>
+    <div>
         <div class="bg-white">
-            <div class="flight-header px-5 border-bottom py-3 d-flex">
+            <div class="flight-header px-4 px-md-3 px-lg-5 border-bottom py-3 d-flex">
                 <div class="py-2 d-flex justify-content-end ">
                     <a routerLink="/airports" class="back-link d-flex align-items-center f-title" tabindex="0">
                         <span class="arrow-icon me-3"><img src="./assets/icons/arrow-left.svg" alt="All flights"></span>
@@ -13,13 +13,13 @@
                 </div>
             </div>
         </div>
-        <div class="title px-5 py-3 bg-light">
+        <div class="title px-4 px-md-3 px-lg-5 py-3 bg-light">
             <h5 class="f-title">
                 <img class="icon me-3" src="./assets/icons/departures.svg" alt="Departures">
                 {{'HOME.DEPARTURES'|translate}}
             </h5>
         </div>
-        <div class="departure-list card  px-5  border-0 bg-light">
+        <div class="departure-list card  px-4 px-md-3 px-lg-5  border-0 bg-light">
             <ul class="list-group list-group-flush">
                 @for (schedule of schedules.slice(0, 5); track $index) {
                 <app-schedule [schedule]="schedule"></app-schedule>

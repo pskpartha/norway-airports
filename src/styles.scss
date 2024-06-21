@@ -5,16 +5,19 @@
 
 :root {
     --primary-clr: #002868;
+    --border-clr: #f7f2f2;
+    --red-clr: #b71540;
 }
 
-
+.modal {
+    --bs-modal-border-radius: 0 !important;
+}
 
 * {
     color: var(--primary-clr);
     font-family: "Poppins", sans-serif;
     font-weight: 400;
 }
-
 
 
 h2,
@@ -27,9 +30,9 @@ p {
     margin-bottom: 0 !important;
 }
 
-// Conversion from px to rem for paragraph
+
 p {
-    font-size: 0.875rem !important; // Assuming base font size is 16px
+    font-size: 0.875rem !important;
 }
 
 .f-title {
@@ -71,6 +74,10 @@ p {
 .form-control,
 .list-group-item {
     border-color: #f7f2f2 !important;
+}
+
+.form-control {
+    border-radius: 0 !important;
 }
 
 // .dropdown-toggle::after {
@@ -117,45 +124,3 @@ p {
     background-color: transparent;
     padding: 0;
 }
-
-// .icon-button {
-//     background: none;
-//     /* Removes any background color */
-//     border: none;
-//     /* Removes border */
-//     padding: 0;
-//     /* Removes padding */
-//     margin: 0;
-//     /* Adjust margin as necessary */
-//     cursor: pointer;
-//     /* Makes the cursor a pointer to indicate it's clickable */
-//     outline: none;
-//     /* Removes the focus outline */
-// }
-
-// .icon-button .arrow-icon img {
-//     display: block;
-//     /* Ensures the image is not inline */
-//     width: 24px;
-//     /* Maintains the original image aspect ratio */
-//     height: 24px;
-//     /* Example height; adjust as needed */
-// }
-
-// .icon-button:hover,
-// .icon-button:focus {
-//     transition: transform 0.3s ease;
-//     background: transparent;
-//     /* Keeps the background transparent on hover/focus */
-//     outline: none;
-//     /* Ensures no outline is shown on focus */
-// }
-
-// .icon-button:focus {}
-
-// .icon-button:hover {
-//     transform: scale(1.1);
-//     /* Enlarges the button slightly when hovered */
-//     transition: transform 0.3s ease;
-//     /* Smooth transition for the transform */
-// }
