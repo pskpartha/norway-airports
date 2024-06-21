@@ -11,6 +11,7 @@ import VectorSource from 'ol/source/Vector';
 import Icon from 'ol/style/Icon';
 import Style from 'ol/style/Style';
 import GeoJSON from 'ol/format/GeoJSON';
+import { IAirport } from '../models/airport.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,8 +37,25 @@ export class MapService {
     });
   }
 
+  createJSONFeature(airport: IAirport): any {
+    const coordinates = [airport.lng, airport.lat];
+    return {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates,
+      },
+      properties: {
+        airportId: airport.iata_code,
+        title: airport.name,
+      },
+    };
+  }
+
   //  TODO add interface to replace any
   addMarkerMapView(locationData: any[]): void {
+    console.log(locationData);
+
     const geojsonObject = {
       type: 'FeatureCollection',
       crs: {
@@ -88,10 +106,17 @@ export class MapService {
     });
   }
 
-  focusLocationOnMap(locationId: string): void {
-    const feature = this.vectorSource
-      .getFeatures()
-      .find((f) => f.get('airportId') === locationId);
+  // TODO feature interface
+  focusLocationOnMap(locationId: string, locationFeature?: any): void {
+    let feature;
+
+    console.log(this.vectorSource);
+    if (!this.vectorSource) {
+    } else {
+      feature = this.vectorSource
+        .getFeatures()
+        .find((f) => f.get('airportId') === locationId);
+    }
 
     if (feature) {
       const geometry = feature.getGeometry();

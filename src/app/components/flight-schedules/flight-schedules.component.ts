@@ -11,6 +11,9 @@ import { ApiService } from '../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IAirport } from '../../models/airport.model';
 import { MapService } from '../../services/map.service';
+import { UtilsService } from '../../services/utils.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AllSchedulesComponent } from './all-schedules/all-schedules.component';
 
 @Component({
   selector: 'app-flight-schedules',
@@ -36,6 +39,8 @@ export class FlightSchedulesComponent implements OnInit {
   private apiService = inject(ApiService);
   private activatedRoute = inject(ActivatedRoute);
   private mapService = inject(MapService);
+  private utliService = inject(UtilsService);
+  private modalService = inject(NgbModal);
 
   ngOnInit(): void {
     // TODO unsubscribe
@@ -43,32 +48,32 @@ export class FlightSchedulesComponent implements OnInit {
       const airportIATA = p['airport_iata'] as string;
       if (airportIATA) {
         this.loadAirportInfo(airportIATA);
-        this.loadFlightDetils(airportIATA);
+        this.loadFlightSchedules(airportIATA);
       }
     });
   }
 
   loadAirportInfo(airportIATA: string) {
+    // TODO Unsubscribe
     if (airportIATA) {
       this.apiService.getAirportInfo(airportIATA).subscribe({
         next: (data) => {
           this.airport = data;
           console.log(this.airport);
+          this.mapService.focusLocationOnMap(airportIATA, this.airport);
         },
         error: (error) => {
           console.error(error);
         },
       });
-
-      this.mapService.focusLocationOnMap(airportIATA);
     }
   }
 
-  loadFlightDetils(airportIATA?: string): void {
+  loadFlightSchedules(airportIATA?: string): void {
     if (airportIATA) {
       this.apiService.getFlightSchedules(airportIATA).subscribe({
         next: (data) => {
-          this.schedules = this.groupFlightsByCodeSharing(data);
+          this.schedules = this.utliService.groupFlightsByCodeSharing(data);
         },
         error: (error) => {
           console.error(error);
@@ -77,47 +82,13 @@ export class FlightSchedulesComponent implements OnInit {
     }
   }
 
-  groupFlightsByCodeSharing(flights: IAirportSchedule[]): any[] {
-    const primaryFlights = new Map<string, IAirportSchedule>();
-    const csAssociateFlights = new Map<string, IAirportSchedule[]>();
-    const flightThatCS = new Set<string>();
-
-    // Initialize primary flights and setup associations
-    flights.forEach((flight) => {
-      if (flight.cs_flight_iata) {
-        // Mark flight as an associate
-        flightThatCS.add(flight.flight_iata);
-
-        // Add to associations under the code-share flight's IATA
-        if (!csAssociateFlights.has(flight.cs_flight_iata)) {
-          csAssociateFlights.set(flight.cs_flight_iata, []);
-        }
-        csAssociateFlights.get(flight.cs_flight_iata)?.push(flight);
-      }
-
-      // Always treat as a primary candidate until proven otherwise
-      if (!flightThatCS.has(flight.flight_iata)) {
-        // Check if not already marked as an associate
-        primaryFlights.set(flight.flight_iata, flight);
-        if (!csAssociateFlights.has(flight.flight_iata)) {
-          csAssociateFlights.set(flight.flight_iata, []); // Initialize empty association
-        }
-      }
+  openAllSchedulesModal() {
+    const modalRef = this.modalService.open(AllSchedulesComponent, {
+      scrollable: true,
     });
-
-    // Construct the output for flights with their associates
-    const result = [];
-    for (let [key, primaryFlight] of primaryFlights.entries()) {
-      if (!flightThatCS.has(key)) {
-        // Ensure this primary is not an associate of another flight
-        const associates = csAssociateFlights.get(key);
-        result.push({
-          ...primaryFlight,
-          associates: associates,
-        });
-      }
-    }
-
-    return result.slice(0, 5);
+    modalRef.componentInstance.scheduleData = {
+      airport: this.airport,
+      schedules: this.schedules,
+    };
   }
 }

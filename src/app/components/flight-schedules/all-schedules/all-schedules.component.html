@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <div class="schedule-header d-flex w-100">
+        <div class="ms-2 mt-2">
+            <h4 class="f-title"> {{scheduleData.airport?.name}}</h4>
+            <small class="text-body-secondary">{{ scheduleData.airport?.iata_code }}</small>
+            <div class="title mt-2">
+                <h5 class="f-title">
+                    <img class="icon me-3" src="./assets/icons/departures.svg" alt="Departures">
+                    {{'HOME.DEPARTURES'|translate}}
+                </h5>
+            </div>
+        </div>
+        <div class="ms-auto">
+            <button type="button" class="btn btn-link d-flex align-items-center" tabindex="0"
+                (click)="activeModal.dismiss('Cross click')">
+                <span class="arrow-icon"><img src="./assets/icons/close.svg" alt="All flights"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-body" tabindex="0">
+    <div class="departure-list card  px-3 py-3  border-0 bg-light">
+        <ul class="list-group list-group-flush">
+            @for (schedule of scheduleData.schedules; track $index) {
+            <app-schedule [schedule]="schedule"></app-schedule>
+            }
+        </ul>
+    </div>
+</div>

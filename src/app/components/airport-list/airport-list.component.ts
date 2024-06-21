@@ -71,20 +71,9 @@ export class AirportListComponent implements OnInit, OnDestroy {
   }
 
   markAirportLocOnMap(airportData: IAirport[]): void {
-    const locationFeatures = airportData.map((airport: IAirport) => {
-      const coordinates = [airport.lng, airport.lat];
-      return {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates,
-        },
-        properties: {
-          airportId: airport.iata_code,
-          title: airport.name,
-        },
-      };
-    });
+    const locationFeatures = airportData.map((airport: IAirport) =>
+      this.mapService.createJSONFeature(airport)
+    );
     this.mapService.addMarkerMapView(locationFeatures);
   }
 

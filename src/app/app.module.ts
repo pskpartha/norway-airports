@@ -14,7 +14,8 @@ import { AirportListComponent } from './components/airport-list/airport-list.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlightSchedulesComponent } from './components/flight-schedules/flight-schedules.component';
 import { LanguageSwitcherComponent } from './components/header/language-switcher/language-switcher.component';
-import { FlightDetailsComponent } from './components/flight-details/flight-details.component';
+import { AllSchedulesComponent } from './components/flight-schedules/all-schedules/all-schedules.component';
+import { ScheduleComponent } from './components/flight-schedules/schedule/schedule.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,7 +31,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AirportLocMapComponent,
     AirportListComponent,
     FlightSchedulesComponent,
-    FlightDetailsComponent,
+    AllSchedulesComponent,
+    ScheduleComponent,
   ],
   imports: [
     BrowserModule,
