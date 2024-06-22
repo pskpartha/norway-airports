@@ -13,6 +13,8 @@ import { IAirport } from '../models/airport.model';
 import Feature from 'ol/Feature';
 import { fromLonLat } from 'ol/proj';
 import { Overlay } from 'ol';
+import { environment } from '../../environments/environment';
+import { BingMaps } from 'ol/source';
 
 interface PointFeature {
   type: string;
@@ -23,26 +25,71 @@ interface PointFeature {
   properties?: any;
 }
 
+interface Layers {
+  [key: string]: TileLayer<OSM | BingMaps>;
+  osm: TileLayer<OSM>;
+  transport: TileLayer<OSM>;
+  road: TileLayer<BingMaps>;
+  aerialwithlabels: TileLayer<BingMaps>;
+  darkview: TileLayer<BingMaps>;
+  lightview: TileLayer<BingMaps>;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
-  map!: Map;
+  private bingMapKey = environment.bingMapKey;
+  private map!: Map;
   private popupOverlay!: Overlay;
-  pointsSource!: VectorSource<Feature<Geometry>>;
-  pointsLayer: VectorLayer<Feature<Geometry>> = new VectorLayer({});
+  private pointsSource!: VectorSource<Feature<Geometry>>;
+  private pointsLayer: VectorLayer<Feature<Geometry>> = new VectorLayer({});
 
+  layers: Layers = {
+    osm: new TileLayer({
+      source: new OSM(),
+      properties: { id: 'baseLayer' },
+    }),
+    transport: new TileLayer({
+      source: new OSM({
+        url: 'https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png',
+      }),
+    }),
+    road: new TileLayer({
+      preload: Infinity,
+      source: new BingMaps({
+        key: this.bingMapKey,
+        imagerySet: 'Road',
+      }),
+    }),
+    aerialwithlabels: new TileLayer({
+      preload: Infinity,
+      source: new BingMaps({
+        key: this.bingMapKey,
+        imagerySet: 'AerialWithLabels',
+      }),
+    }),
+    darkview: new TileLayer({
+      preload: Infinity,
+      source: new BingMaps({
+        key: this.bingMapKey,
+        imagerySet: 'CanvasDark',
+      }),
+    }),
+    lightview: new TileLayer({
+      preload: Infinity,
+      source: new BingMaps({
+        key: this.bingMapKey,
+        imagerySet: 'CanvasLight',
+      }),
+    }),
+  };
   constructor() {}
 
   initMapView(targetId: string): void {
     this.map = new Map({
       target: targetId,
-      layers: [
-        new TileLayer({
-          source: new OSM(),
-        }),
-        this.pointsLayer,
-      ],
+      layers: [this.layers.osm, this.pointsLayer],
       view: new View({
         center: [0, 0],
         zoom: 2,
@@ -193,6 +240,26 @@ export class MapService {
         }
       }
     });
+  }
+
+  selectLayer(layerKey: string): void {
+    const newLayer = this.layers[layerKey];
+    const baseLayer = this.map
+      .getLayers()
+      .getArray()
+      .find((layer) => layer.get('id') === 'baseLayer');
+
+    if (newLayer && baseLayer) {
+      this.map.removeLayer(baseLayer);
+      newLayer.set('id', 'baseLayer'); // Ensure the new base layer gets the ID
+      this.map.getLayers().insertAt(0, newLayer);
+    } else {
+      console.error(
+        'Layer with key',
+        layerKey,
+        'does not exist or base layer not found'
+      );
+    }
   }
 
   clearMapView(): void {

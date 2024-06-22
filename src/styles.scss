@@ -69,20 +69,16 @@ p {
     color: #d8d8d8 !important;
 }
 
+.list-group-flush>.list-group-item:last-child,
+.list-group-item:first-child,
 .border-bottom,
 .border-top,
 .form-control,
 .list-group-item {
     border-color: #f7f2f2 !important;
+    border-radius: var(--bs-border-radius);
 }
 
-.form-control {
-    border-radius: 0 !important;
-}
-
-// .dropdown-toggle::after {
-//     display: none;
-// }
 
 .arrow-icon {
     display: flex;
@@ -123,4 +119,31 @@ p {
     border: 0;
     background-color: transparent;
     padding: 0;
+}
+
+
+/* Adjusting the size of the zoom buttons in OpenLayers */
+
+.ol-control {
+    border-radius: var(--bs-border-radius) !important;
+    background-color: transparent;
+}
+
+.ol-zoom .ol-zoom-in,
+.ol-zoom .ol-zoom-out {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    line-height: normal;
+    border-radius: var(--bs-border-radius) !important;
+    margin-bottom: 4px;
+}
+
+.ol-control button {
+    color: var(--primary-clr);
+    background-color: #ffffff;
+}
+
+.ol-control button:hover {
+    border-color: var(--border-clr);
 }

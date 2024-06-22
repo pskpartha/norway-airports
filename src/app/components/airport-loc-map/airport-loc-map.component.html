@@ -1,5 +1,22 @@
 <section class="airport-loc-map">
-    <div #mapContainer class="loc-mapview"></div>
+    <div #mapContainer class="loc-mapview">
+        <div class="map-tools" tabindex="0">
+            <div ngbDropdown class="d-inline-block" display="dynamic">
+                <button tabindex="0" type="button" class="btn btn-link map-btn" id="dropdownBasic" ngbDropdownToggle>
+                    <img src="./assets/icons/layer-group.svg" alt="Change Map Layer">
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic" class="shadow-sm border-0">
+                    @for (layer of mapLayers; track layer.value) {
+                    <button class="dropdown-item" ngbDropdownItem (click)="selectLayer(layer.value)"><span
+                            class="f-title">{{layer.name}}</span> </button>
+                    }
+                </div>
+            </div>
+
+            <button tabindex="0" class="btn btn-link map-btn" type="button" (click)="resetZoom()"> <img
+                    src="./assets/icons/reset.svg" alt=""></button>
+        </div>
+    </div>
     <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
         <div id="popup-content"></div>

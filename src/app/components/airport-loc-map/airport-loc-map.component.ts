@@ -10,6 +10,7 @@ import {
   input,
 } from '@angular/core';
 import { MapService } from '../../services/map.service';
+import { MAP_LAYERS } from '../../app.constants';
 
 @Component({
   selector: 'app-airport-loc-map',
@@ -18,6 +19,7 @@ import { MapService } from '../../services/map.service';
 })
 export class AirportLocMapComponent implements AfterViewInit, OnDestroy {
   @ViewChild('mapContainer') mapContainerElement!: ElementRef;
+  mapLayers = MAP_LAYERS;
 
   private mapService = inject(MapService);
 
@@ -25,6 +27,13 @@ export class AirportLocMapComponent implements AfterViewInit, OnDestroy {
     this.mapService.initMapView(this.mapContainerElement.nativeElement);
   }
 
+  selectLayer(layerKey: string) {
+    this.mapService.selectLayer(layerKey);
+  }
+
+  resetZoom(): void {
+    this.mapService.resetFullMapView();
+  }
   ngOnDestroy(): void {
     this.mapService.clearMapView();
   }
