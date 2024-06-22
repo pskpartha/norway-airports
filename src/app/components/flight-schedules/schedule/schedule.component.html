@@ -2,9 +2,15 @@
     <div class="list-item-button p-2 flight-item w-100">
         <article class="d-sm-flex d-block">
             <div class="pe-3 date-time pb-2 mb-2 mb-sm-0 pb-sm-0 border-bottom-sm">
-                <h6 class="mb-1 f-title"><b>{{schedule().dep_time | date:'HH:mm'}}</b></h6>
-                <small class="text-body-secondary"> <del>{{schedule().dep_time |
-                        date:'HH:mm'}}</del></small>
+                <h6 class="mb-1 f-title">
+                    <b>{{ (schedule().dep_actual_utc ? schedule().dep_actual_utc : schedule().dep_time_utc) |
+                        date:'HH:mm':'UTC'
+                        }}</b>
+                </h6>
+
+                <small *ngIf="schedule().dep_actual_utc" class="text-body-secondary">
+                    <del>{{ schedule().dep_time_utc | date:'HH:mm':'UTC' }}</del>
+                </small>
                 <p class="fw-semi"> {{schedule().dep_time|date:'EEE, MMMM d, y'}}</p>
             </div>
             <div class="flex-grow-1  d-flex">
@@ -13,18 +19,25 @@
                         <h6 class="mb-1 f-title location"> {{schedule().arr_iata}}</h6>
                     </div>
                     <p class="mb-0">
-                        <b class="me-2"> {{schedule().flight_iata}}</b>
+                        <b class="me-2"> {{schedule().flight_iata}}</b> <img class="ms-2 iata-icon"
+                            [src]="airlabFlagUrl+schedule().airline_iata +'.png'"
+                            [alt]="schedule().airline_iata +' logo'">
                     </p>
                     <p class="mb-0" *ngFor="let associateFlight of schedule().associates">
-                        <b>{{associateFlight.flight_iata}}</b>
+                        <b>{{associateFlight.flight_iata}}</b> <img class="ms-2 iata-icon"
+                            [src]="airlabFlagUrl+associateFlight.airline_iata +'.png'"
+                            [alt]="associateFlight.airline_iata +' logo'">
                     </p>
                 </div>
                 <div class="flight-status ms-auto">
                     <small class="text-body-secondary ms-auto f-title fw-semi">
-                        <div class="alert mb-1 text-uppercase f-title"
-                            [ngClass]="{'alert-warning': schedule().status === 'landed', 'alert-success': schedule().status === 'active', 'alert-info': schedule().status === 'scheduled', 'alert-danger': schedule().status === 'cancelled'}"
-                            role="alert">
-                            {{schedule().status}}
+                        <div class="alert mb-1 text-uppercase f-title" [ngClass]="{
+                            'alert-warning': schedule().status === 'landed', 
+                            'alert-success': schedule().status === 'active', 
+                            'alert-info': schedule().status === 'scheduled', 
+                            'alert-danger': schedule().status === 'cancelled'
+                            }" role="alert">
+                            <b>{{schedule().status}}</b>
 
                         </div>
                     </small>

@@ -20,6 +20,10 @@ a {
 }
 
 .flight-item {
+    .iata-icon {
+        max-height: 24px;
+    }
+
     .location {
         color: #b71540;
         font-weight: 700 !important;

@@ -19,6 +19,7 @@ json-server --watch db.json
 10. add map view for airport location
 11. add ui+integration+e2e tests
 12. check and add better accessibility
+13. check responsiveness
 
 ## Resourses:
 

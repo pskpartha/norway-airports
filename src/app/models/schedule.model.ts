@@ -5,6 +5,9 @@ export interface IAirportSchedule {
   dep_terminal: string;
   dep_gate: string;
   dep_time: string;
+  dep_time_utc: string;
+  dep_actual: string;
+  dep_actual_utc: string;
   arr_iata: string;
   duration: number;
   status: string;

@@ -55,6 +55,7 @@ export class FlightSchedulesComponent implements OnInit {
       this.apiService.getFlightSchedules(airportIATA).subscribe({
         next: (data) => {
           this.schedules = this.utliService.groupFlightsByCodeSharing(data);
+          console.log(this.schedules);
         },
         error: (error) => {
           console.error(error);

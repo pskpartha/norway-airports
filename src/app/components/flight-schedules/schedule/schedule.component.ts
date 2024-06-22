@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 import { IAirportSchedule } from '../../../models/schedule.model';
 
 @Component({
@@ -8,4 +8,12 @@ import { IAirportSchedule } from '../../../models/schedule.model';
 })
 export class ScheduleComponent {
   schedule = input.required<IAirportSchedule>();
+  airlabFlagUrl = 'https://airlabs.co/img/airline/s/';
+  constructor() {
+    effect(() => {
+      // console.log(this.schedule());
+      console.log(this.schedule().dep_actual);
+      console.log(this.schedule().dep_time);
+    });
+  }
 }
