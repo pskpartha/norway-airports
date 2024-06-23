@@ -52,7 +52,6 @@ export class AirportListComponent implements OnInit, OnDestroy {
         next: (data: any[]) => {
           this.airportList = data;
           this.filteredAirports = this.airportList;
-          console.log('>>>>>>>>', this.filteredAirports);
           this.markAirportLocOnMap(this.airportList);
           this.selectedAirport = this.airportList[0];
         },

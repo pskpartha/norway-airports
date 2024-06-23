@@ -12,7 +12,7 @@
 
     .title {
         font-size: 2rem;
-        font-family: "Ubuntu", sans-serif;
+        font-family: var(--title-font);
 
         .icon {
             width: 30px;
@@ -26,7 +26,7 @@
         }
 
         .location {
-            color: #b71540;
+            color: var(--red-clr);
         }
 
         .date-time {
@@ -43,7 +43,7 @@
 
     @media screen and (max-width: 576px) {
         .border-bottom-sm {
-            border-bottom: 2px dashed #f7f2f2;
+            border-bottom: 2px dashed var(--border-clr);
         }
 
         .list-group {

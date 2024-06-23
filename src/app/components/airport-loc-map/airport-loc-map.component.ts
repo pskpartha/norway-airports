@@ -3,11 +3,8 @@ import {
   Component,
   ElementRef,
   OnDestroy,
-  OnInit,
   ViewChild,
-  effect,
   inject,
-  input,
 } from '@angular/core';
 import { MapService } from '../../services/map.service';
 import { MAP_LAYERS } from '../../app.constants';

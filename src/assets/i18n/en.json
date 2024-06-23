@@ -2,9 +2,13 @@
     "HOME": {
         "LOGO_TITLE": "airports",
         "SELECT": "Change language",
-        "DEPARTURES": "Departures"
+        "DEPARTURES": "Departures",
+        "SEARCH_AIRPORTS": "Search airports"
     },
     "MESSAGE": {
         "NO_RESULT_FOUND": "No results found"
+    },
+    "MISC": {
+        "ALL_SCHEDULES": "All schdules"
     }
 }

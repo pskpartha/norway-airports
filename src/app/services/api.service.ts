@@ -5,7 +5,6 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { IAirport } from '../models/airport.model';
 import { IAirportSchedule } from '../models/schedule.model';
-import { IFlightInfo } from '../models/flight.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,20 +37,6 @@ export class ApiService {
     return this.http
       .get<{ response: IAirportSchedule[] }>(
         `${this.apiUrl}schedules?dep_iata=${code}&api_key=${this.airlabsApiKey}`
-      )
-      .pipe(
-        map((data) => data.response),
-        catchError((error) => {
-          console.error('An error occurred: IN getFlightSchedules', error);
-          return throwError(() => error);
-        })
-      );
-  }
-
-  getFlightDetails(flightIATA: string): Observable<IFlightInfo> {
-    return this.http
-      .get<{ response: IFlightInfo }>(
-        `${this.apiUrl}flight?flight_iata=${flightIATA}&api_key=${this.airlabsApiKey}`
       )
       .pipe(
         map((data) => data.response),

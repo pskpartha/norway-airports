@@ -4,7 +4,7 @@
             <form [formGroup]="searchForm" class="w-100 px-4 px-md-3 px-lg-5">
                 <div class="input-group">
                     <input type="text" class="form-control f-title" formControlName="searchTerm"
-                        placeholder="Search airports" id="searchInput">
+                        placeholder="{{'HOME.SEARCH_AIRPORTS'|translate}}" id="searchInput">
 
                     @if (searchForm.get('searchTerm')?.value) {
                     <button type="button" class="icon-button close-icon-button me-2" (click)="clearSearchInput()"
@@ -19,15 +19,20 @@
             <ul class="list-group list-group-flush">
                 <li *ngFor="let airport of filteredAirports" class="list-group-item w-100 mb-1"
                     (click)="updateAirportInfo(airport)" (keydown.enter)="updateAirportInfo(airport)">
-                    <a [routerLink]="['/airports', airport.iata_code]"
-                        class="d-flex justify-content-between align-items-start c-pointer ">
-                        <div class="ms-2 me-auto">
+                    <a [routerLink]="['/airports', airport.iata_code]" class="d-flex c-pointer">
+                        <div class="ms-2">
                             <h5 class="f-title"> {{ airport.name }}</h5>
                             <p>
                                 <small class="text-body-secondary">{{ airport.iata_code }}</small>
                             </p>
                         </div>
-                        <span class="arrow-icon"><img src="./assets/icons/arrow-right.svg" alt="View All"></span>
+                        <div class="ms-auto d-flex align-items-center">
+                            <span class="arrow-icon">
+                                <img src="./assets/icons/arrow-right.svg" alt="View All">
+                            </span>
+                        </div>
+
+
                     </a>
                 </li>
             </ul>

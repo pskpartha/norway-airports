@@ -6,6 +6,10 @@
     h5 img {
         width: 30px;
     }
+
+    .arrow-icon img {
+        width: 18px !important;
+    }
 }
 
 .modal-body {
@@ -14,5 +18,4 @@
 
 .modal-body::-webkit-scrollbar {
     width: 0;
-    /* Scrollbar width */
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject, input } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { IAirportSchedule } from '../../models/schedule.model';
 import { ApiService } from '../../services/api.service';
@@ -8,13 +8,16 @@ import { MapService } from '../../services/map.service';
 import { UtilsService } from '../../services/utils.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AllSchedulesComponent } from './all-schedules/all-schedules.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-flight-schedules',
   templateUrl: './flight-schedules.component.html',
   styleUrl: './flight-schedules.component.scss',
 })
-export class FlightSchedulesComponent implements OnInit {
+export class FlightSchedulesComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
+
   schedules: IAirportSchedule[] = [];
   airport!: IAirport;
 
@@ -25,42 +28,46 @@ export class FlightSchedulesComponent implements OnInit {
   private modalService = inject(NgbModal);
 
   ngOnInit(): void {
-    // TODO unsubscribe
-    this.activatedRoute.params.subscribe((p) => {
-      const airportIATA = p['airport_iata'] as string;
-      if (airportIATA) {
-        this.loadAirportInfo(airportIATA);
-        this.loadFlightSchedules(airportIATA);
-      }
-    });
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe((param) => {
+        const airportIATA = param['airport_iata'] as string;
+        if (airportIATA) {
+          this.loadAirportInfo(airportIATA);
+          this.loadFlightSchedules(airportIATA);
+        }
+      })
+    );
   }
 
   loadAirportInfo(airportIATA: string) {
-    // TODO Unsubscribe
     if (airportIATA) {
-      this.apiService.getAirportInfo(airportIATA).subscribe({
-        next: (data) => {
-          this.airport = data;
-          this.mapService.focusLocationOnMap(airportIATA, this.airport);
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
+      this.subscriptions.push(
+        this.apiService.getAirportInfo(airportIATA).subscribe({
+          next: (data) => {
+            this.airport = data;
+            this.mapService.focusLocationOnMap(airportIATA, this.airport);
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        })
+      );
     }
   }
 
   loadFlightSchedules(airportIATA?: string): void {
     if (airportIATA) {
-      this.apiService.getFlightSchedules(airportIATA).subscribe({
-        next: (data) => {
-          this.schedules = this.utliService.groupFlightsByCodeSharing(data);
-          console.log(this.schedules);
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
+      this.subscriptions.push(
+        this.apiService.getFlightSchedules(airportIATA).subscribe({
+          next: (data) => {
+            this.schedules = this.utliService.groupFlightsByCodeSharing(data);
+            console.log(this.schedules);
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        })
+      );
     }
   }
 
@@ -72,5 +79,9 @@ export class FlightSchedulesComponent implements OnInit {
       airport: this.airport,
       schedules: this.schedules,
     };
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
   }
 }

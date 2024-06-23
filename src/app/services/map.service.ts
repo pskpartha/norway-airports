@@ -84,7 +84,6 @@ export class MapService {
       }),
     }),
   };
-  constructor() {}
 
   initMapView(targetId: string): void {
     this.map = new Map({
@@ -231,9 +230,9 @@ export class MapService {
         if (geometry instanceof Point) {
           const coordinates = geometry.getCoordinates();
           content!.innerHTML =
-            '<h6 class="f-title"> <b>' +
+            '<h6 class="f-title fw-med">' +
             feature.get('title') +
-            '</b></h6> <p>' +
+            '</h6> <p>' +
             feature.get('airportId') +
             '</p>'; // Assuming title is stored in feature properties
           this.popupOverlay.setPosition(coordinates);

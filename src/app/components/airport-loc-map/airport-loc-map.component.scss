@@ -1,18 +1,20 @@
 .loc-mapview {
     width: 100%;
-    height: 820px;
     position: relative;
+    height: 820px;
 
+    @media screen and (max-width: 768px) {
+        height: 400px;
+    }
 
     .map-tools {
-        margin-top: 100px;
+        position: absolute;
+        top: 100px; // Changed margin-top to top for more direct positioning control
         left: 8px;
         z-index: 3;
-        position: absolute;
         display: flex;
         flex-direction: column;
         justify-content: center;
-
 
         .dropdown-toggle::after {
             display: none;
@@ -21,8 +23,8 @@
         .map-btn {
             width: 32px;
             height: 32px;
-            background-color: #fff;
-            border: 1px solid #ffffFf;
+            background-color: var(--white-clr);
+            border: 1px solid var(--white-clr);
             margin-bottom: 4px;
             display: flex;
             align-items: center;
@@ -32,21 +34,15 @@
                 width: 20px;
             }
 
-        }
-
-        .map-btn:hover {
-            border-color: #d8d8d8 !important;
+            &:hover {
+                border-color: var(--border-clr-dark);
+            }
         }
     }
-
-    @media screen and (max-width:768px) {
-        height: 400px;
-    }
-
 
     .ol-popup {
         position: absolute;
-        background-color: white;
+        background-color: var(--white-clr);
         box-shadow: var(--bs-box-shadow-sm) !important;
         padding: 15px;
         border-radius: var(--bs-border-radius);
@@ -55,42 +51,41 @@
         left: -50px;
         min-width: 280px;
 
-    }
+        &::after,
+        &::before {
+            top: 100%;
+            border: solid transparent;
+            content: "";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            left: 48px;
+        }
 
-    .ol-popup:after,
-    .ol-popup:before {
-        top: 100%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-    }
+        &::after {
+            border-top-color: var(--white-clr);
+            border-width: 10px;
+            margin-left: -10px;
+        }
 
-    .ol-popup:after {
-        border-top-color: white;
-        border-width: 10px;
-        left: 48px;
-        margin-left: -10px;
-    }
-
-    .ol-popup:before {
-        border-top-color: rgb(204, 204, 204);
-        border-width: 11px;
-        left: 48px;
-        margin-left: -11px;
+        &::before {
+            border-top-color: var(--border-clr);
+            border-width: 11px;
+            margin-left: -11px;
+        }
     }
 
     .ol-popup-closer {
-        text-decoration: none;
         position: absolute;
         top: 2px;
         right: 8px;
-    }
+        text-decoration: none;
+        font-family: var(--title-font);
 
-    .ol-popup-closer:after {
-        content: "✖";
-        color: var(--bs-secondary-color) !important;
+        &::after {
+            content: "✖";
+            color: var(--bs-secondary-color) !important;
+        }
     }
 }

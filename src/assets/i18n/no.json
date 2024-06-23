@@ -2,9 +2,13 @@
     "HOME": {
         "LOGO_TITLE": "lufthavn",
         "SELECT": "Skifte språk",
-        "DEPARTURES": "Avganger"
+        "DEPARTURES": "Avganger",
+        "SEARCH_AIRPORTS": "Søk etter flyplasser"
     },
     "MESSAGE": {
         "NO_RESULT_FOUND": "Ingen resultater"
+    },
+    "MISC": {
+        "ALL_SCHEDULES": "Alle tidsplaner"
     }
 }
