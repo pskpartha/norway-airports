@@ -1,11 +1,4 @@
-import {
-  Component,
-  DoCheck,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';

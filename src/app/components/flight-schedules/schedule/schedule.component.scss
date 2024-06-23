@@ -1,56 +1,57 @@
-.alert {
-    border-radius: 2px;
-    border: none;
-    padding: 3px 10px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.title {
-    font-size: 2rem;
-    font-family: "Ubuntu", sans-serif;
-
-    .icon {
-        width: 30px;
-
-    }
-}
-
-.flight-item {
-    .iata-icon {
-        max-height: 24px;
+.schedule {
+    .alert {
+        border-radius: 2px;
+        border: none;
+        padding: 3px 10px;
     }
 
-    .location {
-        color: #b71540;
-        font-weight: 700 !important;
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 
-    .date-time {
-        min-width: 120px;
+    .title {
+        font-size: 2rem;
+        font-family: "Ubuntu", sans-serif;
+
+        .icon {
+            width: 30px;
+
+        }
     }
 
-    .date-time,
-    .flight-status {
-        min-width: 110px;
+    .flight-item {
+        .iata-icon {
+            max-height: 24px;
+        }
+
+        .location {
+            color: #b71540;
+        }
+
+        .date-time {
+            min-width: 120px;
+        }
+
+        .date-time,
+        .flight-status {
+            min-width: 110px;
+        }
     }
-}
 
 
 
-@media screen and (max-width: 576px) {
-    .border-bottom-sm {
-        border-bottom: 2px dashed #f7f2f2;
-    }
+    @media screen and (max-width: 576px) {
+        .border-bottom-sm {
+            border-bottom: 2px dashed #f7f2f2;
+        }
 
-    .list-group {
-        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-    }
+        .list-group {
+            background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+        }
 
-    .list-group-item {
-        margin-bottom: 10px !important;
+        .list-group-item {
+            margin-bottom: 10px !important;
+        }
     }
 }

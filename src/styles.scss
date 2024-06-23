@@ -1,42 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
-
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
 :root {
-    --primary-clr: #002868;
+    // colors
+    --title-clr: #002868;
     --border-clr: #f7f2f2;
+    --border-clr-dark: #d8d8d8;
     --red-clr: #b71540;
+    --white-clr: #ffffff;
+
+    // fonts
+    --title-font: "Ubuntu", sans-serif;
+    --body-font: "Poppins", sans-serif;
+}
+
+/* global styles */
+body {
+    color: var(--title-clr);
+}
+
+a {
+    text-decoration: none;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--title-clr) !important;
+    font-family: var(--title-font);
+    font-weight: 400 !important;
+    margin-bottom: 0 !important;
+}
+
+p {
+    font-family: var(--body-font);
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    margin-bottom: 0 !important;
+}
+
+b {
+    font-weight: 600 !important;
 }
 
 .modal {
     --bs-modal-border-radius: 0 !important;
 }
 
-* {
-    color: var(--primary-clr);
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-}
-
-
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    font-weight: 400 !important;
-    margin-bottom: 0 !important;
-}
-
-
-p {
-    font-size: 0.875rem !important;
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: var(--red-clr);
 }
 
 .f-title {
-    font-family: "Ubuntu", sans-serif !important;
+    font-family: var(--title-font);
 }
 
 .bg-test {
@@ -44,7 +62,12 @@ p {
 }
 
 .fw-semi {
-    font-weight: 500;
+    font-weight: 600 !important;
+}
+
+
+.fw-med {
+    font-weight: 500 !important;
 }
 
 .border-0 {
@@ -66,7 +89,7 @@ p {
 }
 
 .btn-link:hover {
-    color: #d8d8d8 !important;
+    color: var(--border-clr-dark) !important;
 }
 
 .list-group-flush>.list-group-item:last-child,
@@ -75,43 +98,37 @@ p {
 .border-top,
 .form-control,
 .list-group-item {
-    border-color: #f7f2f2 !important;
-    border-radius: var(--bs-border-radius);
+    border-color: var(--border-clr) !important;
 }
 
+.list-group-flush>.list-group-item:last-child,
+.list-group-item:first-child,
+.form-control,
+.list-group-item {
+    border-radius: var(--bs-border-radius);
+}
 
 .arrow-icon {
     display: flex;
     width: 32px;
-    background-color: #fff;
     height: 32px;
     align-items: center;
     justify-content: center;
+    background-color: var(--white-clr);
     border-radius: 50%;
+    border: 1px solid var(--border-clr);
 }
 
-.arrow-icon img {
+.arrow-icon img,
+.icon-button img {
     width: 24px;
 }
 
-// Removed commented-out class for hover shadow
-.hv-shadow:hover {
-    box-shadow: var(--bs-box-shadow-sm) !important;
-}
-
-// Sub header
 .sub-header {
     .back-link {
         font-weight: 400;
-        color: #002868 !important;
+        color: var(--title-clr) !important;
         text-decoration: none;
-    }
-
-}
-
-.icon-button {
-    img {
-        width: 24px;
     }
 }
 
@@ -121,29 +138,31 @@ p {
     padding: 0;
 }
 
+/* OpenLayers control styling */
 
-/* Adjusting the size of the zoom buttons in OpenLayers */
-
-.ol-control {
+.ol-zoom {
     border-radius: var(--bs-border-radius) !important;
     background-color: transparent;
-}
 
-.ol-zoom .ol-zoom-in,
-.ol-zoom .ol-zoom-out {
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
-    line-height: normal;
-    border-radius: var(--bs-border-radius) !important;
-    margin-bottom: 4px;
-}
+    .ol-zoom-in,
+    .ol-zoom-out {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        line-height: normal;
+        border-radius: var(--bs-border-radius) !important;
+        margin-bottom: 4px;
 
-.ol-control button {
-    color: var(--primary-clr);
-    background-color: #ffffff;
-}
 
-.ol-control button:hover {
-    border-color: var(--border-clr);
+    }
+
+    button {
+        color: var(--title-clr);
+        font-family: var(--body-font);
+        background-color: var(--white-clr);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+    }
 }

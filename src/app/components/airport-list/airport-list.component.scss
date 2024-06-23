@@ -1,10 +1,4 @@
 .airportlist-container {
-    height: 100%;
-
-    a {
-        text-decoration: none;
-    }
-
 
     .close-icon-button {
         position: absolute;
@@ -22,32 +16,31 @@
     }
 
     .list-group-flush>.list-group-item {
-        border: 1px solid #fff;
+        border: 1px solid var(--white-clr);
     }
 
     .list-group-item:hover {
         border: 1px solid;
-        border-color: #d8d8d8 !important;
+        border-color: var(--border-clr-dark) !important;
     }
 
     .list-item-wrapper {
-        height: 732px;
+        height: 733px;
     }
 
     .list-group {
-        max-height: 684px;
+        max-height: 685px;
         overflow-y: scroll;
     }
 
-    // TODO : check design
     .list-group::-webkit-scrollbar {
         width: 0;
-        /* Scrollbar width */
+
     }
 
     .list-group::-webkit-scrollbar-thumb:hover {
-        background: #555;
-        /* Thumb color on hover */
+        background: var(--border-clr-dark) !important;
+
     }
 
 }

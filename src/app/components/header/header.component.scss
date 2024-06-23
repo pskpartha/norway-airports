@@ -1,7 +1,19 @@
 header {
+    .container-fluid {
+        --bs-gutter-x: 0;
+
+        @media screen and (max-width: 768px) {
+            --bs-gutter-x: 10px;
+        }
+    }
+
     .navbar-brand {
         .logo {
             max-height: 30px;
         }
+    }
+
+    .logo-text {
+        color: var(--title-clr);
     }
 }

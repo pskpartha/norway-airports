@@ -5,16 +5,13 @@
             {{currentLang.name}}
         </button>
 
-        <div ngbDropdownMenu aria-labelledby="lang-switch-dropdown" class="shadow-sm border-0">
-            <ul class="list-group py-2 px-3 list-group-flush">
-                @for (language of availableLanguages; track language.code) {
-                <li ngbDropdownItem class="list-group-item d-flex align-items-center c-pointer f-title" tabindex="0"
-                    (keydown.enter)="switchLanguage(language)" (click)="switchLanguage(language)">
-                    <img [src]="langFlagAssetUrl + language.icon+'.svg'" [alt]="language.name" class="me-2">
-                    {{language.name}}
-                </li>
-                }
-            </ul>
+        <div ngbDropdownMenu aria-labelledby="lang-switch-dropdown" class="shadow-sm border-0 me-2">
+            @for (language of availableLanguages; track language.code) {
+            <button class="dropdown-item" ngbDropdownItem (keydown.enter)="switchLanguage(language)"
+                (click)="switchLanguage(language)"><span class="f-title"><img
+                        [src]="langFlagAssetUrl + language.icon+'.svg'" [alt]="language.name" class="me-2">
+                    {{language.name}}</span> </button>
+            }
         </div>
     </div>
 </div>
