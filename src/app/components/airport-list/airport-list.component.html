@@ -16,7 +16,12 @@
             </form>
         </div>
         <div class="list-item-wrapper py-4 px-4 px-md-3 px-lg-5">
-            <ul class="list-group list-group-flush">
+            <div *ngIf="dataLoading" class="d-flex justify-content-center mt-3">
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <ul *ngIf="!dataLoading" class="list-group list-group-flush">
                 <li *ngFor="let airport of filteredAirports" class="list-group-item w-100 mb-1"
                     (click)="updateAirportInfo(airport)" (keydown.enter)="updateAirportInfo(airport)" tabindex="-1">
                     <a [routerLink]="['/airports', airport.iata_code]" class="d-flex c-pointer" tabindex="0">
@@ -31,9 +36,10 @@
                                 <img src="./assets/icons/arrow-right.svg" alt="View All">
                             </span>
                         </div>
-
-
                     </a>
+                </li>
+                <li *ngIf="filteredAirports.length === 0" class="list-group-item text-center">
+                    <span class="f-title clr-red">{{'MESSAGE.NO_RESULT_FOUND'|translate}}</span>
                 </li>
             </ul>
         </div>

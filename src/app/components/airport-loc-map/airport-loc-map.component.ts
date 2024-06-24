@@ -17,6 +17,7 @@ import { MAP_LAYERS } from '../../app.constants';
 export class AirportLocMapComponent implements AfterViewInit, OnDestroy {
   @ViewChild('mapContainer') mapContainerElement!: ElementRef;
   mapLayers = MAP_LAYERS;
+  currentlayerKey = 'osm';
 
   private mapService = inject(MapService);
 
@@ -25,6 +26,7 @@ export class AirportLocMapComponent implements AfterViewInit, OnDestroy {
   }
 
   selectLayer(layerKey: string) {
+    this.currentlayerKey = layerKey;
     this.mapService.selectLayer(layerKey);
   }
 

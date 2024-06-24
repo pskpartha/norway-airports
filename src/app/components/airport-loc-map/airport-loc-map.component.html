@@ -2,21 +2,21 @@
     <div #mapContainer class="loc-mapview">
         <div class="map-tools">
             <div ngbDropdown class="d-inline-block" display="dynamic">
-                <button placement="end" ngbTooltip="{{'MAP_TOOLS.SELECT_LAYER'|translate}}" tabindex="0" type="button"
-                    class="btn btn-link map-btn" id="dropdownBasic" ngbDropdownToggle>
-                    <img src="./assets/icons/layer-group.svg" alt="Change Map Layer">
+                <button tabindex="0" type="button" class="btn btn-link map-btn" id="map-layer-dropdown"
+                    ngbDropdownToggle>
+                    <img src="./assets/icons/layer-group.svg" alt="{{'MAP_TOOLS.SELECT_LAYER'|translate}}">
                 </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic" class="shadow-sm border-0">
+                <div ngbDropdownMenu aria-labelledby="map-layer-dropdown" class="shadow-sm border-0">
                     @for (layer of mapLayers; track layer.value) {
                     <button class="dropdown-item" ngbDropdownItem (click)="selectLayer(layer.value)"><span
-                            class="f-title">{{layer.name}}</span> </button>
+                            class="f-title"
+                            [ngClass]="{'active-btn': layer.value === currentlayerKey}">{{layer.name}}</span> </button>
                     }
                 </div>
             </div>
 
-            <button placement="end" ngbTooltip="{{'MAP_TOOLS.RESET_ZOOM'|translate}}" tabindex="0"
-                class="btn btn-link map-btn" type="button" (click)="resetZoom()"> <img src="./assets/icons/reset.svg"
-                    alt=""></button>
+            <button tabindex="0" class="btn btn-link map-btn" type="button" (click)="resetZoom()"> <img
+                    src="./assets/icons/reset.svg" alt="{{'MAP_TOOLS.SELECT_LAYER'|translate}}"></button>
         </div>
     </div>
     <div id="popup" class="ol-popup">

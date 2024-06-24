@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -25,9 +25,12 @@ export class ApiService {
         map((data) =>
           data.response.filter((airport) => airport.iata_code !== null)
         ),
-        catchError((error) => {
-          console.error('An error occurred: IN getAirportList: ', error);
-          return throwError(() => error);
+        catchError((error: HttpErrorResponse) => {
+          console.error(
+            'An error occurred: IN getAirportList: ',
+            error.message
+          );
+          return throwError(() => error.message);
         })
       );
   }
@@ -40,9 +43,12 @@ export class ApiService {
       )
       .pipe(
         map((data) => data.response),
-        catchError((error) => {
-          console.error('An error occurred: IN getFlightSchedules', error);
-          return throwError(() => error);
+        catchError((error: HttpErrorResponse) => {
+          console.error(
+            'An error occurred: IN getFlightSchedules',
+            error.message
+          );
+          return throwError(() => error.message);
         })
       );
   }
@@ -54,9 +60,12 @@ export class ApiService {
       )
       .pipe(
         map((data) => data.response[0]),
-        catchError((error) => {
-          console.error('An error occurred: IN getAirportList: ', error);
-          return throwError(() => error);
+        catchError((error: HttpErrorResponse) => {
+          console.error(
+            'An error occurred: IN getAirportInfo: ',
+            error.message
+          );
+          return throwError(() => error.message);
         })
       );
   }

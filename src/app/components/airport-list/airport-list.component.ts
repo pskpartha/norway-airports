@@ -24,6 +24,7 @@ export class AirportListComponent implements OnInit, OnDestroy {
   private apiService = inject(ApiService);
   private mapService = inject(MapService);
 
+  public dataLoading = false;
   constructor(private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       searchTerm: [''],
@@ -47,15 +48,18 @@ export class AirportListComponent implements OnInit, OnDestroy {
   }
 
   loadAirportList() {
+    this.dataLoading = true;
     this.subscriptions.push(
       this.apiService.getAirportList().subscribe({
         next: (data: IAirport[]) => {
+          this.dataLoading = false;
           this.airportList = data;
           this.filteredAirports = this.airportList;
           this.markAirportLocOnMap(this.airportList);
           this.selectedAirport = this.airportList[0];
         },
         error: (error: Error) => {
+          this.dataLoading = false;
           console.error(error);
         },
       })

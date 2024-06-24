@@ -2,9 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
-json-server --watch db.json
+### clone this app from github then navigate to project folder and run
 
-# TODO
+`npm install`
+
+### to run angular app:
+
+`ng serve`
+
+### to run test api:
+
+`json-server --watch db.json`
+
+# TODO (done)
 
 ## UI design
 
@@ -22,12 +32,14 @@ json-server --watch db.json
 12. check and add better accessibility
 13. check responsiveness
 14. translation file added
+15. refactoring
 
 ## Resourses:
 
 1. ng-bootstrap component/UI library | https://ng-bootstrap.github.io/#/getting-started
 2. ngx-translate for translation https://github.com/ngx-translate/core
 3. openlayer for map view | https://openlayers.org/
+4. testing framework karma jasmine
 
 # Ridango web/mobile team exercise
 

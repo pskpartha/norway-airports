@@ -1,14 +1,15 @@
-<div class="language-switcher">
+<div id="language-switcher" class="language-switcher">
     <div ngbDropdown class="d-inline-block" display="dynamic">
-        <button type="button" class="btn btn-link dropdown-toggle f-title" id="lang-switch-dropdown" ngbDropdownToggle>
+        <button type="button" class="btn btn-link" id="lang-switch-dropdown" ngbDropdownToggle>
             <img [src]="langFlagAssetUrl + currentLang.icon+'.svg'" [alt]="currentLang.name" class="me-2">
-            {{currentLang.name}}
+            {{currentLang.code | uppercase}}
         </button>
 
-        <div ngbDropdownMenu aria-labelledby="lang-switch-dropdown" class="shadow-sm border-0 me-2">
+        <div ngbDropdownMenu aria-labelledby="lang-switch-dropdown" class="shadow-sm border-0">
             @for (language of availableLanguages; track language.code) {
             <button class="dropdown-item" ngbDropdownItem (keydown.enter)="switchLanguage(language)"
-                (click)="switchLanguage(language)"><span class="f-title"><img
+                (click)="switchLanguage(language)"><span class="f-title"
+                    [ngClass]="{'active-btn': language.code === currentLang.code}"><img
                         [src]="langFlagAssetUrl + language.icon+'.svg'" [alt]="language.name" class="me-2">
                     {{language.name}}</span> </button>
             }

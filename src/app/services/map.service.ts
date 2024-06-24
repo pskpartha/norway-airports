@@ -234,7 +234,7 @@ export class MapService {
             feature.get('title') +
             '</h6> <p>' +
             feature.get('airportId') +
-            '</p>'; // Assuming title is stored in feature properties
+            '</p>';
           this.popupOverlay.setPosition(coordinates);
         }
       }
@@ -250,7 +250,7 @@ export class MapService {
 
     if (newLayer && baseLayer) {
       this.map.removeLayer(baseLayer);
-      newLayer.set('id', 'baseLayer'); // Ensure the new base layer gets the ID
+      newLayer.set('id', 'baseLayer');
       this.map.getLayers().insertAt(0, newLayer);
     } else {
       console.error(

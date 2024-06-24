@@ -1,5 +1,7 @@
 import { ILanguage } from './models/language.model';
 
+export const APP_VERSION = '0.0.2';
+
 export const APP_LANGUAGES: ILanguage[] = [
   {
     icon: 'england',

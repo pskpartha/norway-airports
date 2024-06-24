@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class FlightSchedulesComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-
+  dataLoading = false;
   schedules: IAirportSchedule[] = [];
   airport!: IAirport;
 
@@ -56,14 +56,18 @@ export class FlightSchedulesComponent implements OnInit, OnDestroy {
   }
 
   loadFlightSchedules(airportIATA?: string): void {
+    this.dataLoading = true;
     if (airportIATA) {
       this.subscriptions.push(
         this.apiService.getFlightSchedules(airportIATA).subscribe({
           next: (data) => {
-            this.schedules = this.utliService.groupFlightsByCodeSharing(data);
-            console.log(this.schedules);
+            this.dataLoading = false;
+            if (data) {
+              this.schedules = this.utliService.groupFlightsByCodeSharing(data);
+            }
           },
           error: (error) => {
+            this.dataLoading = false;
             console.error(error);
           },
         })
