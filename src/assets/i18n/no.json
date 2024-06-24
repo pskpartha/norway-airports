@@ -10,5 +10,9 @@
     },
     "MISC": {
         "ALL_SCHEDULES": "Alle tidsplaner"
+    },
+    "MAP_TOOLS": {
+        "SELECT_LAYER": "Bytt kartlag",
+        "RESET_ZOOM": "Tilbakestill zoom"
     }
 }

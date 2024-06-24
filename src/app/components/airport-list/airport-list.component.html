@@ -18,8 +18,8 @@
         <div class="list-item-wrapper py-4 px-4 px-md-3 px-lg-5">
             <ul class="list-group list-group-flush">
                 <li *ngFor="let airport of filteredAirports" class="list-group-item w-100 mb-1"
-                    (click)="updateAirportInfo(airport)" (keydown.enter)="updateAirportInfo(airport)">
-                    <a [routerLink]="['/airports', airport.iata_code]" class="d-flex c-pointer">
+                    (click)="updateAirportInfo(airport)" (keydown.enter)="updateAirportInfo(airport)" tabindex="-1">
+                    <a [routerLink]="['/airports', airport.iata_code]" class="d-flex c-pointer" tabindex="0">
                         <div class="ms-2">
                             <h5 class="f-title"> {{ airport.name }}</h5>
                             <p>

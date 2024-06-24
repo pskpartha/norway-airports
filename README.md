@@ -6,7 +6,7 @@ json-server --watch db.json
 
 # TODO
 
-## UI desing
+## UI design
 
 1. create project in Git repository.
 2. adding angular boilerplate and other libraries.
@@ -21,6 +21,7 @@ json-server --watch db.json
 11. add ui+integration+e2e tests
 12. check and add better accessibility
 13. check responsiveness
+14. translation file added
 
 ## Resourses:
 

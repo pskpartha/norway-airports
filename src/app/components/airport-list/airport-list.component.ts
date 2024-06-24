@@ -49,7 +49,7 @@ export class AirportListComponent implements OnInit, OnDestroy {
   loadAirportList() {
     this.subscriptions.push(
       this.apiService.getAirportList().subscribe({
-        next: (data: any[]) => {
+        next: (data: IAirport[]) => {
           this.airportList = data;
           this.filteredAirports = this.airportList;
           this.markAirportLocOnMap(this.airportList);

@@ -33,7 +33,7 @@ export class ApiService {
   }
 
   getFlightSchedules(departureIATA: string): Observable<IAirportSchedule[]> {
-    let code = departureIATA.toUpperCase();
+    const code = departureIATA.toUpperCase();
     return this.http
       .get<{ response: IAirportSchedule[] }>(
         `${this.apiUrl}schedules?dep_iata=${code}&api_key=${this.airlabsApiKey}`

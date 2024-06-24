@@ -2,7 +2,8 @@
     <div #mapContainer class="loc-mapview">
         <div class="map-tools">
             <div ngbDropdown class="d-inline-block" display="dynamic">
-                <button tabindex="0" type="button" class="btn btn-link map-btn" id="dropdownBasic" ngbDropdownToggle>
+                <button placement="end" ngbTooltip="{{'MAP_TOOLS.SELECT_LAYER'|translate}}" tabindex="0" type="button"
+                    class="btn btn-link map-btn" id="dropdownBasic" ngbDropdownToggle>
                     <img src="./assets/icons/layer-group.svg" alt="Change Map Layer">
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic" class="shadow-sm border-0">
@@ -13,12 +14,13 @@
                 </div>
             </div>
 
-            <button tabindex="0" class="btn btn-link map-btn" type="button" (click)="resetZoom()"> <img
-                    src="./assets/icons/reset.svg" alt=""></button>
+            <button placement="end" ngbTooltip="{{'MAP_TOOLS.RESET_ZOOM'|translate}}" tabindex="0"
+                class="btn btn-link map-btn" type="button" (click)="resetZoom()"> <img src="./assets/icons/reset.svg"
+                    alt=""></button>
         </div>
     </div>
     <div id="popup" class="ol-popup">
-        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <a href="#" id="popup-closer" class="ol-popup-closer"><span class="visually-hidden">close</span></a>
         <div id="popup-content"></div>
     </div>
 </section>

@@ -22,7 +22,7 @@ interface PointFeature {
     type: string;
     coordinates: number[];
   };
-  properties?: any;
+  properties?: unknown;
 }
 
 interface Layers {

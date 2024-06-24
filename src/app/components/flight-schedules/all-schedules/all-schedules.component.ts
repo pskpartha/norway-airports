@@ -1,5 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { IAirportSchedule } from '../../../models/schedule.model';
+import { IAirport } from '../../../models/airport.model';
 
 @Component({
   selector: 'app-all-schedules',
@@ -7,6 +9,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './all-schedules.component.scss',
 })
 export class AllSchedulesComponent {
-  @Input() scheduleData: any;
+  @Input() scheduleData!: {
+    airport: IAirport;
+    schedules: IAirportSchedule[];
+  };
   public activeModal = inject(NgbActiveModal);
 }

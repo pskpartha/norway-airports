@@ -13,7 +13,7 @@ export class UtilsService {
   constructor() {}
 
   // Flight grouping functionality
-  groupFlightsByCodeSharing(flights: IAirportSchedule[]): any[] {
+  groupFlightsByCodeSharing(flights: IAirportSchedule[]): IAirportSchedule[] {
     this.initializeFlightMaps();
     flights.forEach((flight) => this.processFlightAssociations(flight));
     return this.buildFlightGroups();
@@ -49,9 +49,9 @@ export class UtilsService {
     }
   }
 
-  private buildFlightGroups(): any[] {
+  private buildFlightGroups(): IAirportSchedule[] {
     const result = [];
-    for (let [key, primaryFlight] of this.primaryFlights.entries()) {
+    for (const [key, primaryFlight] of this.primaryFlights.entries()) {
       if (!this.flightThatCS.has(key)) {
         const associates = this.csAssociateFlights.get(key);
         result.push({

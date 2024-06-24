@@ -10,5 +10,9 @@
     },
     "MISC": {
         "ALL_SCHEDULES": "All schdules"
+    },
+    "MAP_TOOLS": {
+        "SELECT_LAYER": "Change map layer",
+        "RESET_ZOOM": "Reset zoom"
     }
 }
