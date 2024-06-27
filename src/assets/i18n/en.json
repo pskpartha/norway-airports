@@ -6,7 +6,8 @@
         "SEARCH_AIRPORTS": "Search airports"
     },
     "MESSAGE": {
-        "NO_RESULT_FOUND": "No results found"
+        "NO_RESULT_FOUND": "No results found",
+        "PAGE_NOT_FOUND": "Page is not available that you are looking for!"
     },
     "MISC": {
         "ALL_SCHEDULES": "All schdules"

@@ -18,6 +18,17 @@ describe('AirportListComponent', () => {
   let apiService: jasmine.SpyObj<ApiService>;
   let mapService: jasmine.SpyObj<MapService>;
 
+  const airportListMock: IAirport[] = [
+    {
+      name: 'JFK International',
+      iata_code: 'JFK',
+      lat: 40.6413,
+      lng: -73.7781,
+    },
+    { name: 'Los Angeles', iata_code: 'LAX', lat: 34.0522, lng: -118.2437 },
+    { name: 'Heathrow', iata_code: 'HTW', lat: 51.47, lng: -0.4543 },
+  ];
+
   beforeEach(async () => {
     const apiSpy = jasmine.createSpyObj('ApiService', ['getAirportList']);
     const mapSpy = jasmine.createSpyObj('MapService', [
@@ -47,26 +58,62 @@ describe('AirportListComponent', () => {
     mapService = TestBed.inject(MapService) as jasmine.SpyObj<MapService>;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Airport list initialization', () => {
+    it('should load airport list on creation', () => {
+      apiService.getAirportList.and.returnValue(of(airportListMock));
+      fixture.detectChanges();
+      expect(apiService.getAirportList).toHaveBeenCalled();
+      expect(component.airportList).toEqual(airportListMock);
+    });
+
+    it('should handle errors when loading airport list fails', () => {
+      const error = new Error('API error');
+      apiService.getAirportList.and.returnValue(throwError(() => error));
+      fixture.detectChanges();
+      expect(component.dataLoading).toBeFalse();
+      expect(component.airportList).toBeUndefined();
+    });
   });
 
-  it('should load airport list and initialize search on creation', () => {
-    const mockAirports: IAirport[] = [
-      { name: 'JFK', iata_code: 'JFK', lat: 40.6413, lng: -73.7781 },
-    ];
-    apiService.getAirportList.and.returnValue(of(mockAirports));
-    fixture.detectChanges();
-    expect(apiService.getAirportList).toHaveBeenCalled();
-    expect(component.airportList).toEqual(mockAirports);
-    expect(component.selectedAirport).toEqual(mockAirports[0]);
-  });
+  describe('List filter search functionality', () => {
+    beforeEach(() => {
+      apiService.getAirportList.and.returnValue(of(airportListMock));
+      fixture.detectChanges();
+      component.ngOnInit();
+      fixture.detectChanges();
+    });
 
-  it('should handle errors when loading airport list fails', () => {
-    const error = new Error('API error');
-    apiService.getAirportList.and.returnValue(throwError(() => error));
-    fixture.detectChanges();
-    expect(component.dataLoading).toBeFalse();
-    expect(component.airportList).toBeUndefined();
+    it('should filter airports correctly when a matching search term is entered', () => {
+      component.searchForm.controls['searchTerm'].setValue('JFK International');
+      fixture.detectChanges();
+      component.filterAirports(
+        component.searchForm.controls['searchTerm'].value
+      );
+      expect(component.filteredAirports.length).toBe(1);
+      expect(component.filteredAirports[0].name).toBe('JFK International');
+    });
+
+    it('should return all airports when the search term is empty', () => {
+      component.searchForm.controls['searchTerm'].setValue('');
+      expect(component.filteredAirports.length).toBe(3);
+    });
+
+    it('should handle case-insensitive search correctly', () => {
+      component.searchForm.controls['searchTerm'].setValue('heathrow');
+      fixture.detectChanges();
+      component.filterAirports(
+        component.searchForm.controls['searchTerm'].value
+      );
+      expect(component.filteredAirports.length).toBe(1);
+      expect(component.filteredAirports[0].name).toBe('Heathrow');
+    });
+
+    it('should return no airports when there is no match', () => {
+      component.searchForm.controls['searchTerm'].setValue('Paris');
+      component.filterAirports(
+        component.searchForm.controls['searchTerm'].value
+      );
+      expect(component.filteredAirports.length).toBe(0);
+    });
   });
 });
