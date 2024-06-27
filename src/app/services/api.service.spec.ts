@@ -12,7 +12,6 @@ describe('ApiService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    // Correctly assign to the outer scope variable
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     TestBed.configureTestingModule({
       providers: [ApiService, { provide: HttpClient, useValue: httpClientSpy }],

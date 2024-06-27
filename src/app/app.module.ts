@@ -16,6 +16,7 @@ import { FlightSchedulesComponent } from './components/flight-schedules/flight-s
 import { LanguageSwitcherComponent } from './components/header/language-switcher/language-switcher.component';
 import { AllSchedulesComponent } from './components/flight-schedules/all-schedules/all-schedules.component';
 import { ScheduleComponent } from './components/flight-schedules/schedule/schedule.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlightSchedulesComponent,
     AllSchedulesComponent,
     ScheduleComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

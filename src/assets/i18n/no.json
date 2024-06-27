@@ -6,7 +6,8 @@
         "SEARCH_AIRPORTS": "Søk etter flyplasser"
     },
     "MESSAGE": {
-        "NO_RESULT_FOUND": "Ingen resultater"
+        "NO_RESULT_FOUND": "Ingen resultater",
+        "PAGE_NOT_FOUND": "Siden er ikke tilgjengelig som du leter etter!"
     },
     "MISC": {
         "ALL_SCHEDULES": "Alle tidsplaner"
