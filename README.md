@@ -1,4 +1,5 @@
 # NorwayAirports
+This demo project is designed for learning purposes and displays a comprehensive list of all airports in Norway. By clicking on a specific airport from the list, you can view the departure schedules for that airport. The project utilizes the Airlabs API to fetch real-time data.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
