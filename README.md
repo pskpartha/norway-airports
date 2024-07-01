@@ -3,7 +3,8 @@ This demo project is designed for learning purposes and displays a comprehensive
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
-### clone this app from github then navigate to project folder and run
+## To Run this project
+### clone this app from GitHub then navigate to the project folder and run
 
 `npm install`
 
